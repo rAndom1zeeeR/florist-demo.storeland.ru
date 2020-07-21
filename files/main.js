@@ -1081,8 +1081,10 @@ function goodsModification() {
         // Много Мало
         if(modificationRestValue>10) {
           goodsModRestValue.html('Много');
+          goodsModRestValue.parent().removeClass('few')
         } else {
           goodsModRestValue.html('Мало');
+          goodsModRestValue.parent().addClass('few')
         }
         
         // Покажем артикул модификации товара, если он указан
@@ -1182,7 +1184,7 @@ function Compare() {
     items: 4,
     margin: 15,
     loop: false,
-    rewind: true,
+    rewind: false,
     lazyLoad: true,
     dots: false,
     nav: false,
@@ -1919,7 +1921,7 @@ function removeFromCartAll(e){
 
 // Валидаторы для телефона в "Подсказать" на главной
 function validName(){
-  var name = $('#callback').find('.form__person');
+  let name = $('#feedback').find('.form__person');
   if(name.val() != ''){
     name.removeClass('error');
     name.attr('placeholder','Введите Имя');
@@ -1927,12 +1929,16 @@ function validName(){
   }else{
     name.addClass('error');
     name.attr('placeholder','Вы не ввели Имя');
+    setTimeout(function(){
+      name.removeClass('error');
+      name.attr('placeholder','Введите Имя');
+    }, 5000);
     return false;
   } 
 }
 function validPhone(){ 
-  var tel = $('#callback').find('.form__phone');
-  var check = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{5,10}$/.test(tel.val());
+  let tel = $('#feedback').find('.form__phone');
+  let check = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{5,10}$/.test(tel.val());
   if(check == true && check != ''){
     tel.removeClass('error');
     tel.attr('placeholder','Введите номер');
@@ -1940,87 +1946,29 @@ function validPhone(){
   }
   else{
     tel.addClass('error');
-    tel.attr('placeholder','Вы ввели неверный номер');
+    tel.attr('placeholder','Введите номер телефона');
+    setTimeout(function(){
+      tel.removeClass('error');
+      tel.attr('placeholder','Введите номер телефона');
+    }, 5000);
     return false;
   }
 }
 // Проверка телефона в обратном звонке.
 function validSubmit(){
-  var name = validName();
-  var phone = validPhone();
+  let name = validName();
+  let phone = validPhone();
   return name && phone;
 }
 // Проверка отправки формы
 $(function(){
-  $('#callback .form__callback').submit(validSubmit);
+  $('#feedback .form__callback').submit(validSubmit);
 });
 
-// Валидаторы для телефона на странице обратного звонка /callback
-function validNameMain(){
-  var name = $('#main').find('.form__person');
-  if(name.val() != ''){
-    name.removeClass('error');
-    name.attr('placeholder','Введите Имя');
-    return true;
-  }else{
-    name.addClass('error');
-    name.attr('placeholder','Вы не ввели Имя');
-    return false;
-  }
-}
-function validPhoneMain(){
-  var tel = $('#main').find('.form__phone');
-  var check = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{5,10}$/.test(tel.val());
-  if(check == true && check != ''){
-    tel.removeClass('error');
-    tel.attr('placeholder','Введите номер');
-    return true;
-  }
-  else{
-    tel.addClass('error');
-    tel.attr('placeholder','Вы ввели неверный номер');
-    return false;
-  }
-}
-// Проверка телефона в обратном звонке.
-function validSubmitMain(){
-  var name = validNameMain();
-  var phone = validPhoneMain();
-  return name && phone;
-}
-// Проверка отправки формы
-$(function(){
-  $('#main .form__callback').submit(validSubmitMain);
-});
-
-// Подписаться. Валидатор почты в Подписаться
-function validEmail(){ 
-  var email = $('#subscribe').find('.form__email');
-  var check = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email.val());
-  if(check == true && check != ''){
-    email.removeClass('error');
-    email.attr('placeholder','Введите Email');
-    return true;
-  }else{
-    email.addClass('error');
-    email.val('');
-    email.attr('placeholder','Вы ввели неверный Email');
-    return false;
-  }
-}
-// Проверка телефона в обратном звонке.
-function validSubmitEmail(){
-  var email = validEmail();
-  return email;
-}
-// Проверка отправки формы
-$(function(){
-  $('#subscribe .form__callback').submit(validSubmitEmail);
-});
 
 // Валидаторы для Имени и телефона в "Служба поддержки" на главной
 function validNameFancy(){
-  var name = $('#fancybox__callback').find('.form__person');
+  let name = $('#fancybox__callback').find('.form__person');
   if(name.val() != ''){
     name.removeClass('error');
     name.attr('placeholder','Введите Имя');
@@ -2028,12 +1976,16 @@ function validNameFancy(){
   }else{
     name.addClass('error');
     name.attr('placeholder','Вы не ввели Имя');
+    setTimeout(function(){
+      name.removeClass('error');
+      name.attr('placeholder','Введите Имя');
+    }, 5000);
     return false;
   } 
 }
 function validPhoneFancy(){
-  var tel = $('#fancybox__callback').find('.form__phone');
-  check = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{5,10}$/.test(tel.val());
+  let tel = $('#fancybox__callback').find('.form__phone');
+  let check = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{5,10}$/.test(tel.val());
   if(check == true && check != ''){
     tel.removeClass('error');
     tel.attr('placeholder','Введите номер');
@@ -2041,13 +1993,17 @@ function validPhoneFancy(){
   }
   else{
     tel.addClass('error');
-    tel.attr('placeholder','Вы ввели неверный номер');
+    tel.attr('placeholder','Введите номер телефона');
+    setTimeout(function(){
+      tel.removeClass('error');
+      tel.attr('placeholder','Введите номер телефона');
+    }, 5000);
     return false;
   }
 }
 function validSubmitFancy(){
-  var name = validNameFancy();
-  var phone = validPhoneFancy();
+  let name = validNameFancy();
+  let phone = validPhoneFancy();
   return name && phone;
 }
 // Проверка отправки формы
@@ -2057,8 +2013,8 @@ $(function(){
 
 // Валидаторы для телефона в "Уведомить" в карточке товара
 function validPhoneNotify(){
-  var tel = $('#fancybox__notify').find('.form__phone');
-  check = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{5,10}$/.test(tel.val());
+  let tel = $('#fancybox__notify').find('.form__phone');
+  let check = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{5,10}$/.test(tel.val());
   if(check == true && check != ''){
     tel.removeClass('error');
     tel.attr('placeholder','Введите номер');
@@ -2066,14 +2022,18 @@ function validPhoneNotify(){
   }
   else{
     tel.addClass('error');
-    tel.attr('placeholder','Вы ввели неверный номер');
+    tel.attr('placeholder','Введите номер телефона');
+    setTimeout(function(){
+      tel.removeClass('error');
+      tel.attr('placeholder','Введите номер телефона');
+    }, 5000);
     return false;
   }
 }
 // Подписаться. Валидатор почты в "Уведомить"
 function validEmailNotify(){
-  var email = $('#fancybox__notify').find('.form__email');
-  var check = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email.val());
+  let email = $('#fancybox__notify').find('.form__email');
+  let check = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email.val());
   if(check == true && check != ''){
     email.removeClass('error');
     email.attr('placeholder','Введите Email');
@@ -2082,12 +2042,16 @@ function validEmailNotify(){
     email.addClass('error');
     email.val('');
     email.attr('placeholder','Вы ввели неверный Email');
+    setTimeout(function(){
+      email.removeClass('error');
+      email.attr('placeholder','Введите Email');
+    }, 5000);
     return false;
   }
 }
 function validSubmitNotify(){
-  var email = validEmailNotify();
-  var phone = validPhoneNotify();
+  let email = validEmailNotify();
+  let phone = validPhoneNotify();
   return email || phone;
 }
 // Проверка отправки формы
@@ -2941,7 +2905,7 @@ function pdtSales() {
     responsiveRefreshRate: 100,
     responsive: {
       0:{items:1},
-      320:{items:1},
+      320:{items:1, autoHeight: true},
       481:{items:2},
       641:{items:3},
       768:{items:3},
@@ -2975,7 +2939,7 @@ function pdtSale() {
     responsiveRefreshRate: 100,
     responsive: {
       0:{items:1},
-      320:{items:1},
+      320:{items:1, autoHeight: true},
       481:{items:2},
       641:{items:3},
       768:{items:3},
@@ -3008,7 +2972,7 @@ function pdtNew() {
     responsiveRefreshRate: 100,
     responsive: {
       0:{items:1},
-      320:{items:1},
+      320:{items:1, autoHeight: true},
       481:{items:2},
       641:{items:3},
       768:{items:3},
@@ -3041,7 +3005,7 @@ function pdtBest() {
     responsiveRefreshRate: 100,
     responsive: {
       0:{items:1},
-      320:{items:1},
+      320:{items:1, autoHeight: true},
       481:{items:2},
       641:{items:3},
       768:{items:3},

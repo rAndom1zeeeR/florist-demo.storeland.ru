@@ -176,7 +176,7 @@
     {% ENDIF %}
     <!-- Доступность товара -->
     <div class="productView__available">
-      <div class="available__true" {% IF GOODS_MOD_REST_VALUE=0 %}style="display:none;"{% ENDIF %}><span>В наличии</span> <span class="goodsModRestValue" data-value="{GOODS_MOD_REST_VALUE}">{% IF GOODS_MOD_REST_VALUE > 10 %}Много{% ELSE %}Мало{% ENDIF %}</span></div>
+      <div class="available__true {% IF GOODS_MOD_REST_VALUE < 10 %}few{% ENDIF %}" {% IF GOODS_MOD_REST_VALUE=0 %}style="display:none;"{% ENDIF %}><span>В наличии</span> <span class="goodsModRestValue" data-value="{GOODS_MOD_REST_VALUE}">{% IF GOODS_MOD_REST_VALUE > 10 %}Много{% ELSE %}Мало{% ENDIF %}</span></div>
       <div class="available__false" {% IF GOODS_MOD_REST_VALUE>0 %}style="display:none;"{% ENDIF %}><span>Нет в наличии</span></div>
     </div>
     <!-- Блок информации по акции действующей на товар, если таковая есть -->
@@ -416,9 +416,13 @@
           <!-- Форма добавления отзыва о товаре -->
           <div class="opinion__blocks">
             {% IFNOT CLIENT_IS_LOGIN %}
-            <div class="opinion__block">
+            <div class="opinion__block bordered">
               <label for="goods_opinion_name">Представьтесь, пожалуйста:</label>
               <input id="goods_opinion_name" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_NAME}]" value="{% IF CLIENT_IS_LOGIN %}{CLIENT_NAME}{% ELSE %}{FORM_GOODS_OPINION_NAME}{% ENDIF %}" maxlength="50"  class="form__input" placeholder="Ваше имя:" required />
+              <span class="top"></span>
+              <span class="left"></span>
+              <span class="right"></span>
+              <span class="bottom"></span>
             </div>
             {% ENDIF %}
             <div class="opinion__block rating">
@@ -444,9 +448,13 @@
             <label for="goods_opinion_limitations">Недостатки:</label>
             <textarea id="goods_opinion_limitations" name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_LIMITATIONS}]" cols="100" rows="3" class="textarea">{FORM_GOODS_OPINION_LIMITATIONS}</textarea>
           </div>
-          <div class="opinion__block">
+          <div class="opinion__block bordered">
             <label for="goods_opinion_comment">Комментарий:</label>
             <textarea id="goods_opinion_comment" name="form[{ANTISPAM_FORM_FIELD_NAME_GOODS_OPINION_COMMENT}]" cols="100" rows="7" class="textarea" placeholder="Сообщение" required>{FORM_GOODS_OPINION_COMMENT}</textarea>
+            <span class="top"></span>
+            <span class="left"></span>
+            <span class="right"></span>
+            <span class="bottom"></span>
           </div>
           <div class="opinion__block" style="display: none;">
             <label for="opinion_generally_is_good1">Порекомендовали бы товар друзьям?</label>

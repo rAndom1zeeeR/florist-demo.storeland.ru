@@ -22,7 +22,7 @@
   <link rel="canonical" href="{PAGE_CANONICAL}" />
   {% ENDIF %}
   <!-- Подключаемые шрифты -->
-  <link rel="stylesheet" type="text/css" href="/design/MontserratAlternates.css?design=florist" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
   <!-- Стили магазина -->
   <link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}min.css?design=florist" />
@@ -725,7 +725,7 @@
     <section id="promo">
       <div class="container">
         <div class="block__title">
-          <div class="title">Почему наш магазин</div>
+          <div class="title">Почему наш магазин?</div>
         </div>
         <div class="inner">
           <div class="promo__image">
@@ -1118,18 +1118,18 @@
             {% ENDFOR %}
             <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span itemprop="name">{GOODS_NAME}</span><meta itemprop="position" content='{% FOR upper_navigation %}{%IF upper_navigation.last%}{upper_navigation.index | plus("3")}{%ENDIF%}{%ENDFOR%}' /></li>
             {% ELSEIF MOD_LNAME=catalog %}
-            {% IF IS_FULL_CATALOG %}
-            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span itemprop="name">Каталог</span><meta itemprop="position" content="2" /></li>
-            {% ELSE %}
-            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="{CATALOG_URL}" title="Перейти в каталог продукции нашего магазина"><span itemprop="name">Каталог</span><meta itemprop="position" content="2" /></a></li>
-            {% FOR upper_navigation %}
-            {% IF upper_navigation.CURRENT %}
-            <li><span>{upper_navigation.NAME}</span></li>
-            {% ELSEIF upper_navigation.CURRENT_PARENT %}
-            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="{upper_navigation.URL}" title="Перейти в категорию &laquo;{upper_navigation.NAME}&raquo;"><span itemprop="name">{upper_navigation.NAME}</span><meta itemprop="position" content='{upper_navigation.index | plus("2")}' /></a></li>
-            {% ENDIF %}
-            {% ENDFOR %}
-            {% ENDIF %}
+              {% IF IS_FULL_CATALOG %}
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span itemprop="name">Каталог</span><meta itemprop="position" content="2" /></li>
+              {% ELSE %}
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="{CATALOG_URL}" title="Перейти в каталог продукции нашего магазина"><span itemprop="name">Каталог</span><meta itemprop="position" content="2" /></a></li>
+                {% FOR upper_navigation %}
+                  {% IF upper_navigation.CURRENT %}
+                    <li><span>{upper_navigation.NAME}</span></li>
+                  {% ELSEIF upper_navigation.CURRENT_PARENT %}
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="{upper_navigation.URL}" title="Перейти в категорию &laquo;{upper_navigation.NAME}&raquo;"><span itemprop="name">{upper_navigation.NAME}</span><meta itemprop="position" content='{upper_navigation.index | plus("2")}' /></a></li>
+                  {% ENDIF %}
+                {% ENDFOR %}
+              {% ENDIF %}
             {% ENDIF %}
           </ul>
         </div>
@@ -1200,7 +1200,6 @@
               </div>
             </div>
             <!-- Если в тарифном плане подключен модуль фильтров по товарам -->
-            {% IF SHOW_GOODS_PRICE_FILTERS && goods_filters_empty=1 %}
             <div id="filters" class="sidebar__block {% FOR filter_attr_list %}{% FOR values %}{% IF filter_attr_list.values.CHECKED %}hasFilters {% ENDIF %}{% ENDFOR %}{% ENDFOR %} {% FOR filter_prop_list %}{% FOR values %}{% IF filter_prop_list.values.CHECKED %}hasFilters {% ENDIF %}{% ENDFOR %}{% ENDFOR %}">
               <div class="filters__icon sidebar__title"><span>Фильтры</span><i class="icon-filter"></i></div>
               <form action="" method="get" class="form__filters">
@@ -1261,7 +1260,6 @@
                 </div>
               </form>
             </div>
-            {% ENDIF %}
             <!-- Сравнение -->
             {% IF SETTINGS_COMPARE_DISABLE=0 %}
             <div class="sidebar__block compare {% IF COMPARE_GOODS_COUNT > 0 %}hasItems{% ENDIF %}">
