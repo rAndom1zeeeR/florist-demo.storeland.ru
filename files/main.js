@@ -310,12 +310,14 @@ $(function() {
       
       if((data.category.length) > 0){
         $(".result__category").show();
+        $("#search__result").addClass('onlyCategory');
       }else{
         $(".result__category").hide();
       }
       
       if((data.goods.length) > 0){
         $(".result__goods").show();
+        $("#search__result").removeClass('onlyCategory');
       }else{
         $(".result__goods").hide();
       }
@@ -491,14 +493,14 @@ $(document).ready(function() {
 // Наверх
 $(document).ready(function(){
   $(".toTop").hide();
-	$(window).scroll(function () {
+	$(window).scroll(function() {
 		if ($(this).scrollTop() > 100) {
 			$('.toTop').fadeIn();
 		} else {
 			$('.toTop').fadeOut();
 		}
 	});
-	$('.toTop').click(function () {
+	$('.toTop').on('click',function() {
 		$('body,html').animate({
 			scrollTop: 0
 		}, 800);
@@ -761,7 +763,7 @@ function catalogpage() {
   
   // Боковое меню сохранение открытой вложенности
   $('.collapsible:not(".active")').find('.collapsible__content').css('display', 'none');
-  $('.collapsible__click').click(function(event){
+  $('.collapsible__click').on('click',function(event){
   event.preventDefault();
     if ($(this).closest('.collapsible').hasClass('active')) {
       $(this).parent().find('.collapsible__content').slideUp(600);
@@ -774,14 +776,14 @@ function catalogpage() {
     }
   });
 
-  $('.filters__icon').click(function(event){
+  $('.filters__icon').on('click',function(event){
     event.preventDefault();
-    if ($(this).parent().hasClass('active')) {
-      $(this).next('.form__filters').slideUp(600);
-      $(this).parent().removeClass('active');
+    if ($(this).parent().parent().hasClass('active')) {
+      $(this).parent().next('.form__filters').slideUp(600);
+      $(this).parent().parent().removeClass('active');
     } else {
-      $(this).next('.form__filters').slideDown(600);
-      $(this).parent().addClass('active');
+      $(this).parent().next('.form__filters').slideDown(600);
+      $(this).parent().parent().addClass('active');
     }
   });
   
@@ -1924,13 +1926,16 @@ function validName(){
   let name = $('#feedback').find('.form__person');
   if(name.val() != ''){
     name.removeClass('error');
+    name.parent().removeClass('error');
     name.attr('placeholder','Введите Имя');
     return true;
   }else{
     name.addClass('error');
+    name.parent().addClass('error');
     name.attr('placeholder','Вы не ввели Имя');
     setTimeout(function(){
       name.removeClass('error');
+      name.parent().removeClass('error');
       name.attr('placeholder','Введите Имя');
     }, 5000);
     return false;
@@ -1941,15 +1946,18 @@ function validPhone(){
   let check = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{5,10}$/.test(tel.val());
   if(check == true && check != ''){
     tel.removeClass('error');
+    tel.parent().removeClass('error');
     tel.attr('placeholder','Введите номер');
     return true;
   }
   else{
     tel.addClass('error');
-    tel.attr('placeholder','Введите номер телефона');
+    tel.parent().addClass('error');
+    tel.attr('placeholder','Введите номер');
     setTimeout(function(){
       tel.removeClass('error');
-      tel.attr('placeholder','Введите номер телефона');
+      tel.parent().removeClass('error');
+      tel.attr('placeholder','Введите номер');
     }, 5000);
     return false;
   }
@@ -1971,13 +1979,16 @@ function validNameFancy(){
   let name = $('#fancybox__callback').find('.form__person');
   if(name.val() != ''){
     name.removeClass('error');
+    name.parent().removeClass('error');
     name.attr('placeholder','Введите Имя');
     return true;
   }else{
     name.addClass('error');
+    name.parent().addClass('error');
     name.attr('placeholder','Вы не ввели Имя');
     setTimeout(function(){
       name.removeClass('error');
+      name.parent().removeClass('error');
       name.attr('placeholder','Введите Имя');
     }, 5000);
     return false;
@@ -1988,15 +1999,18 @@ function validPhoneFancy(){
   let check = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{5,10}$/.test(tel.val());
   if(check == true && check != ''){
     tel.removeClass('error');
+    tel.parent().removeClass('error');
     tel.attr('placeholder','Введите номер');
     return true;
   }
   else{
     tel.addClass('error');
-    tel.attr('placeholder','Введите номер телефона');
+    tel.parent().addClass('error');
+    tel.attr('placeholder','Введите номер');
     setTimeout(function(){
       tel.removeClass('error');
-      tel.attr('placeholder','Введите номер телефона');
+      tel.parent().removeClass('error');
+      tel.attr('placeholder','Введите номер');
     }, 5000);
     return false;
   }
@@ -2017,15 +2031,18 @@ function validPhoneNotify(){
   let check = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{5,10}$/.test(tel.val());
   if(check == true && check != ''){
     tel.removeClass('error');
+    tel.parent().removeClass('error');
     tel.attr('placeholder','Введите номер');
     return true;
   }
   else{
     tel.addClass('error');
-    tel.attr('placeholder','Введите номер телефона');
+    tel.parent().addClass('error');
+    tel.attr('placeholder','Введите номер');
     setTimeout(function(){
       tel.removeClass('error');
-      tel.attr('placeholder','Введите номер телефона');
+      tel.parent().removeClass('error');
+      tel.attr('placeholder','Введите номер');
     }, 5000);
     return false;
   }
@@ -2036,14 +2053,17 @@ function validEmailNotify(){
   let check = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email.val());
   if(check == true && check != ''){
     email.removeClass('error');
+    email.parent().removeClass('error');
     email.attr('placeholder','Введите Email');
     return true;
   }else{
     email.addClass('error');
+    email.parent().addClass('error');
     email.val('');
     email.attr('placeholder','Вы ввели неверный Email');
     setTimeout(function(){
       email.removeClass('error');
+      email.parent().removeClass('error');
       email.attr('placeholder','Введите Email');
     }, 5000);
     return false;
@@ -2592,20 +2612,18 @@ function cartDelete(s){
 
 // Функция быстрого оформления заказа в корзине
 function startOrder(){  
-  var globalOrder = $('#globalOrder');
-  var buttonStartOrder = $('#startOrder');
-  var closeOrder = $('#closeOrder');
-  var cartTable = $('.cartTable');
+  let globalOrder = $('#globalOrder');
+  let cartTable = $('.cartTable');
   //объект блока куда будет выводиться форма быстрого заказа
-  var OrderAjaxBlock = $('#OrderAjaxBlock');
-  var urlQuickForm = '/cart/add'; // адрес страницы с формой
+  let OrderAjaxBlock = $('#OrderAjaxBlock');
+  let urlQuickForm = '/cart/add'; // адрес страницы с формой
   // данные которые отарвятся на сервер чтобы получить только форму быстрого заказа без нижней части и верхней части сайта
-  var quickFormData = [
+  let quickFormData = [
     {name: 'ajax_q', value: 1},
     {name: 'fast_order', value: 1}
   ];
-  cartTable.hide();
   globalOrder.show('slow');
+  cartTable.hide('slow');
   $.ajax({
     type: "POST",
     cache: false,
@@ -2662,14 +2680,14 @@ function startOrder(){
 
 // Отправка купона при оформлении заказа
 function coupons() {
-  var submitBtn = $('.coupon__button');
-  var cuponInput = $('#coupon__code');
-  var resetBtn = $('.coupon__reset');
+  let submitBtn = $('.coupon__button');
+  let cuponInput = $('#coupon__code');
+  let resetBtn = $('.coupon__reset');
   submitBtn.on('click', function(){
-    var url = '/order/stage/confirm';
-    var val = cuponInput.val();
+    let url = '/order/stage/confirm';
+    let val = cuponInput.val();
     // Получаем данные формы, которые будем отправлять на сервер
-    var formData = $('#myform').serializeArray();
+    let formData = $('#myform').serializeArray();
     formData.push({name: 'ajax_q', value: 1});
     formData.push({name: 'only_body', value: 1});
     formData.push({name: 'form[coupon_code]', value: val});
@@ -2722,10 +2740,12 @@ function coupons() {
   // Сброс
   resetBtn.on('click', function(){
     $('#coupon__code').val('').trigger('input');
+    submitBtn.trigger('click');
     setTimeout(function(){
       $('.total__coupons').hide();
       $('.total__discount').show();
       cuponInput.parent().removeClass('error');
+      cuponInput.removeClass('error');
       cuponInput.val("").attr("placeholder", "Введите купон");
       submitBtn.html('<i class="icon-arrow-right"></i>');
     }, 500);
@@ -2905,7 +2925,7 @@ function pdtSales() {
     responsiveRefreshRate: 100,
     responsive: {
       0:{items:1},
-      320:{items:1, autoHeight: true},
+      320:{items:1},
       481:{items:2},
       641:{items:3},
       768:{items:3},
@@ -2939,7 +2959,7 @@ function pdtSale() {
     responsiveRefreshRate: 100,
     responsive: {
       0:{items:1},
-      320:{items:1, autoHeight: true},
+      320:{items:1},
       481:{items:2},
       641:{items:3},
       768:{items:3},
@@ -2972,7 +2992,7 @@ function pdtNew() {
     responsiveRefreshRate: 100,
     responsive: {
       0:{items:1},
-      320:{items:1, autoHeight: true},
+      320:{items:1},
       481:{items:2},
       641:{items:3},
       768:{items:3},
@@ -3005,7 +3025,7 @@ function pdtBest() {
     responsiveRefreshRate: 100,
     responsive: {
       0:{items:1},
-      320:{items:1, autoHeight: true},
+      320:{items:1},
       481:{items:2},
       641:{items:3},
       768:{items:3},
