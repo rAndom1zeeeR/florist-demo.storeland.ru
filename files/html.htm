@@ -381,10 +381,9 @@
                   {% ENDFOR %}
                 </a>
                 <div class="product__ico">
-                  {% IF index_page_favorites_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>index_page_favorites_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ELSEIF index_page_favorites_goods.MIN_PRICE_OLD>index_page_favorites_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
-                  {% IF index_page_favorites_goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}
                   {% IF index_page_favorites_goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
                   {% IF index_page_favorites_goods.IS_NEW %}<span class="ico__new"></span>{% ENDIF %}
+                  {% IF index_page_favorites_goods.MAX_DISCOUNT %}<span class="ico__sale"></span>{% ENDIF %}
                 </div>
               </div>
               <div class="product__shop {% IF index_page_favorites_goods.IS_HAS_IN_COMPARE_LIST || index_page_favorites_goods.IS_HAS_IN_FAVORITES_LIST %}added{% ENDIF %}">
@@ -578,10 +577,9 @@
                   {% ENDFOR %}
                 </a>
                 <div class="product__ico">
-                  {% IF index_page_new_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>index_page_new_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ELSEIF index_page_new_goods.MIN_PRICE_OLD>index_page_new_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
-                  {% IF index_page_new_goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}
-                  {% IF index_page_new_goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
                   {% IF index_page_new_goods.IS_NEW %}<span class="ico__new"></span>{% ENDIF %}
+                  {% IF index_page_new_goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
+                  {% IF index_page_new_goods.MAX_DISCOUNT %}<span class="ico__sale"></span>{% ENDIF %}
                 </div>
               </div>
               <div class="product__shop">
@@ -763,7 +761,7 @@
 
     <!-- Товары на главной -->
     {% IFNOT index_page_goods_empty %}
-    <section id="pdt__sale" class="pdt__sale">
+    <div id="pdt__sale" class="pdt__sale">
       <div class="container">
         <div class="preloader"><div class="loading"></div></div>
         <div class="block__title block__nav">
@@ -793,10 +791,9 @@
                   {% ENDFOR %}
                 </a>
                 <div class="product__ico">
-                  {% IF index_page_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>index_page_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ELSEIF index_page_goods.MIN_PRICE_OLD>index_page_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
-                  {% IF index_page_goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}
-                  {% IF index_page_goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
                   {% IF index_page_goods.IS_NEW %}<span class="ico__new"></span>{% ENDIF %}
+                  {% IF index_page_goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
+                  {% IF index_page_goods.MAX_DISCOUNT %}<span class="ico__sale"></span>{% ENDIF %}
                 </div>
               </div>
               <div class="product__shop {% IF index_page_goods.IS_HAS_IN_COMPARE_LIST || index_page_goods.IS_HAS_IN_FAVORITES_LIST %}added{% ENDIF %}">
@@ -933,7 +930,7 @@
           {% ENDFOR %}
         </div>
       </div>
-    </section>
+    </div>
     {% ENDIF %}
 
     <!-- Обратная связь -->
@@ -1028,10 +1025,9 @@
                   {% ENDFOR %}
                 </a>
                 <div class="product__ico">
-                  {% IF index_page_sale_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>index_page_sale_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ELSEIF index_page_sale_goods.MIN_PRICE_OLD>index_page_sale_goods.MIN_PRICE_NOW %}<span class="ico__sales"></span>{% ENDIF %}
-                  {% IF index_page_sale_goods.IS_PLACE_ON_INDEX_PAGE %}<span class="ico__sale"></span>{% ENDIF %}
-                  {% IF index_page_sale_goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
+                  {% IF index_page_sale_goods.MAX_DISCOUNT %}<span class="ico__sale"></span>{% ENDIF %}
                   {% IF index_page_sale_goods.IS_NEW %}<span class="ico__new"></span>{% ENDIF %}
+                  {% IF index_page_sale_goods.IS_TOP %}<span class="ico__best"></span>{% ENDIF %}
                 </div>
               </div>
               <div class="product__shop {% IF index_page_sale_goods.IS_HAS_IN_COMPARE_LIST || index_page_sale_goods.IS_HAS_IN_FAVORITES_LIST %}added{% ENDIF %}">

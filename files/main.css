@@ -529,7 +529,7 @@ header .menu__icon i {padding: 0;font-size: 2rem;}
 
 
 /*** Обратная связь ***/
-#feedback {margin-bottom: 0;padding-bottom: 3rem;background: url("{ASSETS_IMAGES_PATH}bg_left2.png?design=florist") no-repeat 0 0, url("{ASSETS_IMAGES_PATH}bg_right2.png?design=florist") no-repeat 100% 0;}
+#feedback {margin: 0;padding-bottom: 3rem;background: url("{ASSETS_IMAGES_PATH}bg_left2.png?design=florist") no-repeat 0 0, url("{ASSETS_IMAGES_PATH}bg_right2.png?design=florist") no-repeat 100% 0;}
 #feedback .form__callback {width: 35rem;margin: 0 auto;}
 #feedback .callback__title {text-align: center;margin-bottom: 3rem;line-height: 1.7;}
 #feedback .form__fields {display: flex;flex-wrap: wrap;align-items: center;justify-content: space-between;margin-bottom: 2rem;}
@@ -570,6 +570,7 @@ header .menu__icon i {padding: 0;font-size: 2rem;}
 
 
 /*** Новости ***/
+#news {margin-top: 0;}
 .news__image {display: flex;align-items: center;justify-content: center;margin-bottom: 1rem;}
 #news .news__image img {width: auto;}
 .news__date {background: #b30020;color: #fff;font-size: 11px;position: absolute;top: 1.5rem;right: 0;padding: 0.25rem 0.75rem;}
@@ -730,6 +731,7 @@ footer .contacts {width: 100%;flex-direction: row;}
 }
 @media all and (max-width: 767px) {
 .product__image a {height: 170px;}
+.product__ico span + span {display: none;}
 }
 @media all and (max-width: 641px) {
 .products__grid .product__item {width: 50%;}
@@ -1225,7 +1227,7 @@ footer .contacts {width: 100%;flex-direction: row;}
 
 
 /*** Заголовки ***/
-.block__title {position: relative;text-align: center;margin-bottom: 3rem;}
+.block__title {position: relative;text-align: center;margin-bottom: 2rem;}
 .block__title .title {display: block;font-size: 2.25rem;line-height: 2.5rem;max-height: 7.5rem;overflow: hidden;}
 .block__title .subtitle {font-size: 80%;}
 .block__nav .owl-nav [class^="owl-"] {position: absolute;top: calc(50% - 1rem);}
