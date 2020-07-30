@@ -495,7 +495,7 @@
 <div class="related">
   <!-- Сопутствующие товары -->
   {% IFNOT related_goods_empty %}
-  <div class="related__goods">
+  <div class="related__goods add__goods">
     <div class="block__title">
       <div class="title">Добавьте к заказу</div>
     </div>
@@ -509,13 +509,6 @@
           <div class="product__image">
             <a href="{related_goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{related_goods.NAME}" itemprop="url">
               <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF related_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{related_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{related_goods.NAME}" itemprop="image">
-              {% FOR images %}
-              {% IF related_goods.images.index = 2 %}
-              <div class="product__img--hover">
-                <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{related_goods.images.MEDIUM}" alt="{related_goods.NAME}" title="{related_goods.NAME}">
-              </div>
-              {% ENDIF %}
-              {% ENDFOR %}
             </a>
           </div>
           <div class="product__shop {% IF related_goods.IS_HAS_IN_COMPARE_LIST || related_goods.IS_HAS_IN_FAVORITES_LIST %}added{% ENDIF %}">
@@ -536,10 +529,16 @@
               <meta itemprop="priceValidUntil" content="{related_goods.MAX_DISCOUNT_EXPIRED_AT | date("Y-m-d")}"/>
               <span class="price__now {CURRENCY_CHAR_CODE}" itemprop="price" content="{related_goods.MIN_PRICE_NOW}">{related_goods.MIN_PRICE_NOW | money_format}</span>
             </div>
+            {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && related_goods.MAX_REST_VALUE=0 %}
+            <div class="product__empty">
+              <a class="add-empty button small" href="{related_goods.URL_MIN_PRICE_NOW | url_amp}" title="{related_goods.NAME}"><span>Нет в наличии</span></a>
+            </div>
+            {% ELSE %}
             <div class="product__checkbox">
               <input class="checkbox__input square" id="{related_goods.MIN_PRICE_NOW_ID}" type="checkbox" data-mod-id="{related_goods.MIN_PRICE_NOW_ID}" data-mod-price="{related_goods.MIN_PRICE_NOW}">
               <label class="checkbox__label button small" for="{related_goods.MIN_PRICE_NOW_ID}">Добавить</label>
             </div>
+            {% ENDIF %}
           </div>
         </form>
       </div>
