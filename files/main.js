@@ -366,6 +366,11 @@ function GetSum(val,precision) {
 // Форматирует цену
 function number_format(n,e,t,r){var i=n,a=e,o=function(n,e){var t=Math.pow(10,e);return(Math.round(n*t)/t).toString()};i=isFinite(+i)?+i:0,a=isFinite(+a)?Math.abs(a):0;var u,d,f="undefined"==typeof r?",":r,h="undefined"==typeof t?".":t,l=a>0?o(i,a):o(Math.round(i),a),s=o(Math.abs(i),a);s>=1e3?(u=s.split(/\D/),d=u[0].length%3||3,u[0]=l.slice(0,d+(0>i))+u[0].slice(d).replace(/(\d{3})/g,f+"$1"),l=u.join(h)):l=l.replace(".",h);var c=l.indexOf(h);return a>=1&&-1!==c&&l.length-c-1<a?l+=new Array(a-(l.length-c-1)).join(0)+"0":a>=1&&-1===c&&(l+=h+new Array(a).join(0)+"0"),l}
 
+// Добавляет пробел 1000 -> 1 000  /  10000 -> 10 000
+function addSpaces(nStr){
+  return nStr.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')
+}
+
 // Проверка вводимых значений в количестве товара
 function keyPress(oToCheckField, oKeyEvent) {
   return oKeyEvent.charCode === 0 || /\d/.test(String.fromCharCode(oKeyEvent.charCode));
@@ -896,10 +901,10 @@ function quantity() {
     // Обновление кол-ва для функций "Добавить"
     $('.goodsDataMainModificationId').val($(this).val());
     // Количество
-    var val = parseInt($(this).val());
+    let val = parseInt($(this).val());
     // Цена товара без изменений
-    var price = parseInt($('.productView__price .price__now').attr('content'));
-    var newPrice = 0;
+    let price = parseInt($('.productView__price .price__now').attr('content'));
+    let newPrice = 0;
     // Проверяем наличие добавленных товаров вместе с основным
     if ($('.productView__form [class^="goodsID-"]').length) {
       $('.productView__form [class^="goodsID-"]').each(function(){
@@ -908,9 +913,9 @@ function quantity() {
       });
     }
     // Считаем новую сумму товара с учетом добавленных
-    var multi = val * price + newPrice;
+    let multi = String(val * price + newPrice);
     // Обновляем новую сумму
-    $('.productView__price .price__now').attr('data-price', multi).find('.num').text(multi)
+    $('.productView__price .price__now').attr('data-price', multi).find('.num').text(addSpaces(multi));
   });
 }
 
@@ -919,14 +924,14 @@ function newModification() {
   $('.goodsModificationsProperty').each(function(){
     a = $(this).find('select option:selected').attr('value');
     $(this).find('.goodsModificationsValue[data-value="'+ a +'"]').addClass('active');
-    dis = $(this).find('select option:disabled').attr('value');
+    let dis = $(this).find('select option:disabled').attr('value');
     $(this).find('.goodsModificationsValue[data-value="'+ dis +'"]').removeClass('active');
     $(this).find('.goodsModificationsValue[data-value="'+ dis +'"]').addClass('disabled');
   });
   $('.goodsModificationsValue').click(function(){
     $(this).parent().find('.goodsModificationsValue').removeClass('active');
     $(this).addClass('active');
-    a = $(this).data('value');
+    let a = $(this).data('value');
     $(this).parent().parent().find('select option[value="' + a + '"]').prop('selected',true);
     $(this).parent().parent().find('select').trigger('change');
   });
@@ -995,11 +1000,6 @@ function goodsModification() {
         modificationPriceOldFormated  = modificationBlock.find('.price_old_formated').html(),
         modificationRestValue         = parseFloat(modificationBlock.find('[name="rest_value"]').val()),
         modificationDescription       = modificationBlock.find('.description').html(),
-        modificationMeasureId         = parseInt(modificationBlock.find('[name="measure_id"]').val()),
-        modificationMeasureName       = modificationBlock.find('[name="measure_name"]').val(),
-        modificationMeasureDesc       = modificationBlock.find('[name="measure_desc"]').val(),
-        modificationMeasurePrecision  = modificationBlock.find('[name="measure_precision"]').val(),
-        modificationIsInCompareList   = modificationBlock.find('[name="is_has_in_compare_list"]').val(),
         modificationGoodsModImageId   = modificationBlock.find('[name="goods_mod_image_id"]').val(),
         goodsModView                  = $('.productView'),
         goodsModificationId           = $('.goodsModificationId'),
@@ -1114,9 +1114,9 @@ function goodsModification() {
   });
 
   $('.related__goods .checkbox__input').on('change', function(){
-    var $checkbox = $(this);
-    var modId = $checkbox.data('mod-id');
-    var checkboxActive = $checkbox.prop('checked');
+    let $checkbox = $(this);
+    let modId = $checkbox.data('mod-id');
+    let checkboxActive = $checkbox.prop('checked');
     if (checkboxActive) {
       // Создаём инпут с доп товаром
       var $input = $('<input class="goodsID-' + modId + '">')
@@ -1140,11 +1140,11 @@ function goodsModification() {
   });
 
   function changePrice(currentCheckbox, checkboxActive){
-    var $checkbox = currentCheckbox;
-    var checkboxPrice = $checkbox.data('mod-price');
-    var $priceNowBlock = $('.productView__price .price__now');
-    var nowPrice = $priceNowBlock.attr('data-price');
-    var newPrice = 0;
+    let $checkbox = currentCheckbox;
+    let checkboxPrice = $checkbox.data('mod-price');
+    let $priceNowBlock = $('.productView__price .price__now');
+    let nowPrice = $priceNowBlock.attr('data-price');
+    let newPrice = 0;
     if (checkboxActive) {
       newPrice = String(parseInt(nowPrice) + parseInt(checkboxPrice));
       $priceNowBlock.attr('data-price', parseInt(nowPrice) + parseInt(checkboxPrice))
@@ -1152,7 +1152,7 @@ function goodsModification() {
       newPrice = String(nowPrice - checkboxPrice);
       $priceNowBlock.attr('data-price', parseInt(nowPrice)  - parseInt(checkboxPrice))
     }
-    $priceNowBlock.find('.num').text(parseInt(newPrice))
+    $priceNowBlock.find('.num').text(addSpaces(newPrice))
   }
 }
 
@@ -3137,28 +3137,28 @@ function OpenMenu() {
       $('.overflowMenu').removeClass('active');
       setTimeout(function(){
         $('#overlay').removeClass('transparent');
-      }, 600);
+      }, 300);
     }
   });
   
   // Открытие элементов
   $('.dropdown__open').on('click', function(event){
     event.preventDefault();
-    var value = $(this).data('open');
+    let value = $(this).data('open');
     if ($('.dropdown__content').hasClass('opened')){
       $(this).removeClass('opened');
-      $('#overlay').removeClass('opened transparent');
+      $('#overlay').removeClass('opened');
       $('.dropdown__content[data-open="'+ value +'"]').removeClass('opened');
     }else{
       $(this).addClass('opened');
-      $('#overlay').addClass('opened transparent');
+      $('#overlay').addClass('opened');
       $('.dropdown__content[data-open="'+ value +'"]').addClass('opened');
     }
   });
   // Закрытие элементов
   $('.dropdown__label').on('click', function(event){
     $('.dropdown__content').removeClass('opened');
-    $('#overlay.transparent').removeClass('opened');
+    $('#overlay').removeClass('opened transparent');
   });
 
 }
@@ -3177,14 +3177,13 @@ function OpenMenuCatalog() {
   });
 
   $('header .menu__icon, #menu .menu__icon').on('click', function(event){
-    console.log('open')
     event.preventDefault();
     if ($('#menu').hasClass('opened')){
       $('#menu').removeClass('opened');
-      $('#overlay').removeClass('opened transparent');
+      $('#overlay').removeClass('opened');
     }else{
       $('#menu').addClass('opened');
-      $('#overlay').addClass('opened transparent');
+      $('#overlay').addClass('opened');
     }
   });
 }
