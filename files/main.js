@@ -2737,147 +2737,6 @@ function coupons() {
   });
 }
 
-// Дополнительные пункты меню в шапке Перенос пунктов меню
-function mainnavHeader(){
-  var mainnav = $('.header__menu .mainnav');
-  var overMenuExist = mainnav.find('.overflowMenu li').length;
-  if(overMenuExist){
-    mainnav.find('.overflowMenu li').removeClass('mainnav__replaced');
-    mainnav.find('.mainnav__more').remove();
-    mainnav.find('.overflowMenu li').each(function(){
-      mainnav.find('.mainnav__list').append($(this));
-    });
-  }
-  menuWidth = mainnav.width();
-  menuCount = mainnav.find('.mainnav__list li').length + 1;
-  var nextCheck = 0;
-  var CurrentWidthCounter = 0;
-  for(var i=1; i < menuCount;  i++){
-    currentWidth = parseInt(Math.ceil(mainnav.find('.mainnav__list li:nth-child('+i+')').width())) + 16;
-    nextCheck += currentWidth;
-    if(nextCheck > menuWidth){
-      var a = i;
-      for(a;a < menuCount;a++){
-        mainnav.find('.mainnav__list li:nth-child('+ a +')').addClass('mainnav__replaced');
-      }
-      mainnav.find('.mainnav__replaced').each(function(){
-        mainnav.find('.overflowMenu').append($(this));
-      });
-      mainnav.find('.mainnav__list').append('<li class="mainnav__item mainnav__more"><a class="mainnav__link">Еще...</a></li>');
-      menuMorePosition = parseInt(mainnav.find('.mainnav__more').position().left);
-      mainnav.find('.mainnav__more').on('click',function(){
-        mainnav.find('.overflowMenu').hasClass('active') ? mainnav.find('.overflowMenu').removeClass('active') : mainnav.find('.overflowMenu').addClass('active');
-        mainnav.find('.mainnav__list').hasClass('active') ? mainnav.find('.mainnav__list').removeClass('active') : mainnav.find('.mainnav__list').addClass('active');
-      });
-      $(function($){
-        $(document).mouseup(function (e){ 
-          var div =  mainnav.find('.overflowMenu.active'); 
-          var btn =  mainnav.find('.mainnav__more');
-          if (!div.is(e.target) && div.has(e.target).length === 0 && !btn.is(e.target)) {
-            div.removeClass('active');
-            mainnav.find('.mainnav__list').removeClass('active');
-          }
-        });
-      });
-      return false;
-    }
-  }
-}
-
-// Дополнительные пункты меню в шапке Перенос пунктов меню
-function mainnavFooter(){
-  var mainnav = $('#footer .mainnav');
-  var overMenuExist = mainnav.find('.overflowMenu li').length;
-  if(overMenuExist){
-    mainnav.find('.overflowMenu li').removeClass('mainnav__replaced');
-    mainnav.find('.mainnav__more').remove();
-    mainnav.find('.overflowMenu li').each(function(){
-      mainnav.find('.mainnav__list').append($(this));
-    });
-  }
-  menuWidth = mainnav.width();
-  menuCount = mainnav.find('.mainnav__list li').length + 1;
-  var nextCheck = 0;
-  var CurrentWidthCounter = 0;
-  for(var i=1; i < menuCount;  i++){
-    currentWidth = parseInt(Math.ceil(mainnav.find('.mainnav__list li:nth-child('+i+')').width())) + 16;
-    nextCheck += currentWidth;
-    if(nextCheck > menuWidth){
-      var a = i;
-      for(a;a < menuCount;a++){
-        mainnav.find('.mainnav__list li:nth-child('+ a +')').addClass('mainnav__replaced');
-      }
-      mainnav.find('.mainnav__replaced').each(function(){
-        mainnav.find('.overflowMenu').append($(this));
-      });
-      mainnav.find('.mainnav__list').append('<li class="mainnav__item mainnav__more"><a class="mainnav__link">Еще...</a></li>');
-      menuMorePosition = parseInt(mainnav.find('.mainnav__more').position().left);
-      mainnav.find('.mainnav__more').on('click',function(){
-        mainnav.find('.overflowMenu').hasClass('active') ? mainnav.find('.overflowMenu').removeClass('active') : mainnav.find('.overflowMenu').addClass('active');
-        mainnav.find('.mainnav__list').hasClass('active') ? mainnav.find('.mainnav__list').removeClass('active') : mainnav.find('.mainnav__list').addClass('active');
-      });
-      $(function($){
-        $(document).mouseup(function (e){ 
-          var div =  mainnav.find('.overflowMenu.active'); 
-          var btn =  mainnav.find('.mainnav__more');
-          if (!div.is(e.target) && div.has(e.target).length === 0 && !btn.is(e.target)) {
-            div.removeClass('active');
-            mainnav.find('.mainnav__list').removeClass('active');
-          }
-        });
-      });
-      return false;
-    }
-  }
-}
-
-// Дополнительные пункты меню в шапке Перенос пунктов меню
-function mainnavCatalogOFF(){
-  var mainnav = $('#catalog .catalog__menu');
-  var overMenuExist = mainnav.find('.overflowMenu li').length;
-  if(overMenuExist){
-    mainnav.find('.overflowMenu li').removeClass('catalog__replaced');
-    mainnav.find('.catalog__more').remove();
-    mainnav.find('.overflowMenu li').each(function(){
-      mainnav.find('.catalog__items').append($(this));
-    });
-  }
-  menuWidth = mainnav.width();
-  menuCount = mainnav.find('.catalog__items > div[data-level="0"]').length + 1;
-  var nextCheck = 0;
-  var CurrentWidthCounter = 0;
-  for(var i=1; i < menuCount;  i++){
-    currentWidth = parseInt(Math.ceil(mainnav.find('.catalog__items > div[data-level="0"]:nth-child('+i+')').width())) + 30;
-    nextCheck += currentWidth;
-    if(nextCheck > menuWidth){
-      var a = i;
-      for(a;a < menuCount;a++){
-        mainnav.find('.catalog__items > div[data-level="0"]:nth-child('+ a +')').addClass('catalog__replaced');
-      }
-      mainnav.find('.catalog__replaced').each(function(){
-        mainnav.find('.overflowMenu').append($(this));
-      });
-      mainnav.find('.catalog__items').append('<div class="catalog__item catalog__more"><a class="catalog__link"><span class="icon-more"></span></a></div>');
-      menuMorePosition = parseInt(mainnav.find('.catalog__more').position().left);
-      mainnav.find('.catalog__more').on('click',function(){
-        mainnav.find('.overflowMenu').hasClass('active') ? mainnav.find('.overflowMenu').removeClass('active') : mainnav.find('.overflowMenu').addClass('active');
-        mainnav.find('.catalog__items').hasClass('active') ? mainnav.find('.catalog__items').removeClass('active') : mainnav.find('.catalog__items').addClass('active');
-      });
-      $(function($){
-        $(document).mouseup(function (e){ 
-          var div = mainnav.find('.overflowMenu.active'); 
-          var btn = mainnav.find('.catalog__more');
-          if (!div.is(e.target) && div.has(e.target).length === 0 && !btn.is(e.target)) {
-            div.removeClass('active');
-            mainnav.find('.catalog__items').removeClass('active');
-          }
-        });
-      });
-      return false;
-    }
-  }
-}
-
 // Функция показать больше для Акции на главной странице
 function pdtSales() {
   $('.pdt__sales .owl-carousel').owlCarousel({
@@ -3130,11 +2989,12 @@ $("#news .owl-carousel").owlCarousel({
 // Открытие Контактов, Меню, Сравнения, Избранного
 function OpenMenu() {
   // Закрытие всего при нажатии на темную часть
-  $('#overlay').on('click', function(e){
+  $('#overlay, .addto__close').on('click', function(e){
     event.preventDefault();
     if($(this).hasClass('opened')){
       $('div, a, form').removeClass('opened');
       $('.overflowMenu').removeClass('active');
+      $('.menu__icon').find('i').removeClass('icon-closex').addClass('icon-menu');
       setTimeout(function(){
         $('#overlay').removeClass('transparent');
       }, 300);
@@ -3155,36 +3015,63 @@ function OpenMenu() {
       $('.dropdown__content[data-open="'+ value +'"]').addClass('opened');
     }
   });
-  // Закрытие элементов
-  $('.dropdown__label').on('click', function(event){
-    $('.dropdown__content').removeClass('opened');
-    $('#overlay').removeClass('opened transparent');
-  });
-
 }
 
 // Открытие каталога 
 function OpenMenuCatalog() {
-  $('#menu .menu__catalog').off('click').click(function(event){
+  // Открытие каталога
+  $('.menu .menu__catalog').off('click').click(function(event){
     event.preventDefault();
-    if ($('#menu').hasClass('active')) {
-      $('#menu').removeClass('active');
+    if ($(this).parents().find('.menu').hasClass('active')) {
+      $(this).parents().find('.menu').removeClass('active');
       $(this).find('.mainnav__link ').removeClass('active');
     } else {
-      $('#menu').addClass('active');
+      $(this).parents().find('.menu').addClass('active');
       $(this).find('.mainnav__link ').addClass('active');
     }
   });
-
-  $('header .menu__icon, #menu .menu__icon').on('click', function(event){
+  // Открытие меню
+  $('.menu .menu__icon').on('click', function(event){
     event.preventDefault();
-    if ($('#menu').hasClass('opened')){
-      $('#menu').removeClass('opened');
+    if ($(this).parents().find('.menu').hasClass('opened')){
+      $(this).parents().find('.menu').removeClass('opened');
       $('#overlay').removeClass('opened');
+      $(this).find('i').removeClass('icon-closex').addClass('icon-menu');
     }else{
-      $('#menu').addClass('opened');
+      $(this).parents().find('.menu').addClass('opened');
       $('#overlay').addClass('opened');
+      $(this).find('i').removeClass('icon-menu').addClass('icon-closex');
     }
+  });
+
+  // Переключение Каталога в открытом сайдбаре
+  $('.title__catalog').on('click', function(e){
+    event.preventDefault();
+    if(!$(this).hasClass('active')){
+      $(this).addClass('active');
+      $('.title__menu').removeClass('active');
+      $('.menu .mainnav__list').hide();
+      $('.menu .catalog__items').show();
+    }
+  });
+  // Переключение Меню в открытом сайдбаре
+  $('.title__menu').on('click', function(e){
+    event.preventDefault();
+    if(!$(this).hasClass('active')){
+      $(this).addClass('active');
+      $('.title__catalog').removeClass('active');
+      $('.menu .mainnav__list').show();
+      $('.menu .catalog__items').hide();
+    }
+  });
+  $('.addto__close').on('click', function(e){
+    event.preventDefault();
+      $('div, a, form').removeClass('opened');
+      $('.overflowMenu').removeClass('active');
+      $('.menu__icon').find('i').removeClass('icon-closex').addClass('icon-menu');
+      setTimeout(function(){
+        $('#overlay').removeClass('transparent');
+      }, 300);
   });
 }
 
@@ -3285,8 +3172,6 @@ $(document).ready(function(){
 $(document).ready(function(){
   if(getClientWidth() > 768){
     quickView();
-    mainnavHeader();
-    mainnavFooter();
   }
   if(getClientWidth() < 768){
   }
@@ -3300,8 +3185,6 @@ $(document).ready(function(){
 $(window).resize(function(){
   if(getClientWidth() > 768){
     quickView();
-    mainnavHeader();
-    mainnavFooter();
   }
   if(getClientWidth() < 768){
   }
