@@ -290,7 +290,7 @@ header .inner {position: relative;}
 header .menu {padding: 0 1rem;}
 header .menu__icon {width: 120px;height: 195px;background-image: url("{ASSETS_IMAGES_PATH}menu.png?design=florist");background-size: cover;background-position: 0 100%;background-repeat: no-repeat;display: flex;align-items: center;justify-content: center;cursor: pointer;}
 header .menu__icon i {font-size: 2.25rem;color: #fff;}
-.menu .menu__content {display: none;position: absolute;top: 0;left: 382px;padding: 0 1rem;width: 100%;background: #FFFFFF;z-index: 52;flex-wrap: wrap;border: 1px solid #e0e0e0;}
+.menu .menu__content {display: none;position: absolute;top: 0;left: 382px;width: calc(100% - 382px);padding: 0 1rem;background: #FFFFFF;z-index: 52;flex-wrap: wrap;border: 1px solid #e0e0e0;}
 .menu.opened .menu__content {display: flex;}
 .menu .catalog__items {display: none;background: #f1f2f8;padding-left: 1rem;}
 .menu.active .catalog__items {display: block;}
@@ -299,6 +299,7 @@ header .menu__icon i {font-size: 2.25rem;color: #fff;}
 .menu .catalog__link, .menu .mainnav__link {display: inline-block;padding: 0.5rem 2rem 0.5rem 0;cursor: pointer;transition: all 0.3s ease;}
 .menu .mainnav__link.active, .menu .mainnav__link:hover, .menu .catalog__link.opened, .menu .catalog__link:hover {padding: 0.5rem 0.75rem;background-color: #b30020;color: #fff;}
 .menu .menu__catalog a {padding: 0.5rem 0.75rem;background-color: #b30020;color: #fff;}
+.menu .menu__catalog a:hover {padding: 0.5rem 1rem;}
 .menu .mainnav__list {width: 173px;}
 .menu .catalog__link {width: 173px;}
 @media all and (max-width: 1199px) {
