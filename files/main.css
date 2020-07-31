@@ -613,7 +613,7 @@ footer .social__links {margin-top: 3rem;text-align: center;}
 footer .social__links a {font-size: 1.25rem;margin: 0 0.5rem;}
 footer .social__links span {display: none;}
 /** Контакты **/
-footer .contacts {width: calc(100% - 382px);display: flex;flex-wrap: wrap;display: flex;flex-wrap: wrap;align-items: center;}
+footer .contacts {width: calc(100% - 260px);display: flex;flex-wrap: wrap;align-items: center;}
 footer .contacts .contacts__block {margin: 2rem 0 0 2rem;width: calc(50% - 2rem);display: flex;flex-wrap: wrap;align-items: center;}
 footer .contacts i {font-size: 2.25rem;}
 footer .contacts .icon {width: 4rem;}
@@ -634,14 +634,13 @@ footer .logo {padding-top: 3rem;}
 @media all and (max-width: 991px) {
 .footer__top {padding-bottom: 1rem;}
 footer .social__links {margin-top: 1.5rem;}
-footer .contacts {padding-left: 1rem;margin-top: 0rem;flex-direction: column;}
-footer .contacts .contacts__block {margin: 1rem 0 0 0;width: 100%;}
-footer .contacts span {font-size: 1rem;}
+footer .contacts {width: calc(100% - 230px);padding-left: 1rem;margin-top: 0rem;}
+footer .contacts .contacts__block {width: calc(50% - 1rem);margin: 1rem 0 0 1rem;}
 footer .contacts label {display: block;font-size: 0.75rem;color: #aca7b4;margin-top: 0.25rem;cursor: pointer;}
 }
 @media all and (max-width: 767px) {
 footer .menu__icon {width: 100px;}
-footer .contacts {width: calc(100% - 362px);padding: 0;}
+footer .contacts {padding: 0;}
 footer .contacts i {font-size: 1.625rem;}
 footer .contacts span {font-size: 0.85rem;}
 footer .contacts label {font-size: 0.625rem;}
@@ -649,12 +648,11 @@ footer .contacts .icon {width: 2.5rem;}
 footer .contacts .content {width: calc(100% - 2.5rem);}
 }
 @media all and (max-width: 641px) {
-footer .logo {width: 180px;padding: 0;margin-top: 2rem;}
-footer .menu__icon {width: 70px;height: 140px;}
-footer .contacts {width:calc(100% - 282px);}
+footer .logo {width: 100%;padding: 0;margin-top: 2rem;text-align: center;}
+footer .contacts {width: 100%;}
 }
 @media all and (max-width: 480px) {
-footer .contacts {width: 100%;flex-direction: row;}
+footer .contacts .contacts__block {width: 100%;}
 }
 
 

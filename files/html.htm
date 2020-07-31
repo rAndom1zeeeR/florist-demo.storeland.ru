@@ -1545,12 +1545,6 @@
                 <a style="display: none;" class="facebook" href="https://www.facebook.com/" title="FaceBook.com" target="_blank"><i class="icon-facebook" aria-hidden="true"></i><span>Facebook</span></a>
               </div>
             </div>
-            <!-- Меню -->
-            <div class="menu">
-              <div class="menu__icon">
-                <i class="icon-menu"></i>
-              </div>
-            </div>
             <!-- Контакты -->
             <div class="contacts" itemscope itemtype="https://schema.org/Organization">
               <meta itemprop="name" content="{SETTINGS_STORE_ORG_NAME}"/>
@@ -1614,37 +1608,6 @@
     
     <!-- Модальные окна -->
     <noindex>
-
-    <!-- Каталог и Меню -->
-    <div style="display: none" id="mommenu" class="clicked addto">
-      <div class="addto__title">
-        <div class="title__catalog active" data-content="catalog">
-          <i class="material-icons">menu</i>
-          <span>Каталог</span>
-        </div>
-        <div class="title__menu" data-content="menu">
-          <i class="material-icons">drag_indicator</i>
-          <span>Меню</span>
-        </div>
-        <div class="addto__close mommenu__close"><i class="material-icons">close</i></div>
-      </div>
-      <div class="catalog__items" data-level="0">
-        {% FOR catalog_full %}
-          {% IF catalog_full.FIRST %}{% IFNOT catalog_full.LEVEL = 0 %}<div data-level="{catalog_full.LEVEL}" data-next="{catalog_full.LEVEL | plus("1")}" class="sub">{% ENDIF %}{% ENDIF %}
-          <div {% IF catalog_full.HIDE %}style="display:none;"{% ENDIF %} data-level="{catalog_full.LEVEL}" data-next="{catalog_full.LEVEL | plus("1")}" class="catalog__item {% IF catalog_full.ISSET_SUB %}parent{% ENDIF %} {% IF catalog_full.CURRENT_PARENT %}opened{% ENDIF %}">
-            <a href="{catalog_full.URL}" data-level="{catalog_full.LEVEL}" data-next="{catalog_full.LEVEL | plus("1")}" class="catalog__link">
-              <span>{catalog_full.NAME}</span>
-            </a>
-          {% IF catalog_full.ISSET_SUB=0 %}</div>{% ENDIF %}{% IF catalog_full.LAST %}{% FOR out %}</div>{% IFNOT catalog_full.out.LAST %}</div>{% ENDIF %}{% ENDFOR out %}{% ENDIF %}
-        {% ENDFOR catalog_full %}
-      <div class="menu__items">
-        {% FOR menu %}{% FOR header %}{% FOR links %}
-        <div class="menu__item">
-          <a href="{menu.header.links.URL}" class="{% IF menu.header.links.SELECTED %}current{%ENDIF%}" {% IF menu.header.links.TITLE %}title="{menu.header.links.TITLE}"{% ENDIF %}><span>{menu.header.links.NAME}</span></a>
-        </div>
-        {% ENDFOR %}{% ENDFOR %}{% ENDFOR %}
-      </div>
-    </div>
     <!-- Скрытое обновление корзины -->
     <div class="hiddenUpdate" style="display: none;"></div>
     <!-- Политика конфиденциальности в модальном окне -->
