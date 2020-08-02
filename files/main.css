@@ -369,7 +369,7 @@ header .menu__icon i {font-size: 2.25rem;color: #fff;}
 }
 /** Корзина **/
 header .cart {position: relative;width: 194px;margin-top: 2rem;}
-header .cart .addto__label a {display: flex;flex-wrap: wrap;align-items: center;justify-content: flex-end;}
+header .cart .addto__label {display: flex;flex-wrap: wrap;align-items: center;justify-content: flex-end;}
 header .cart .addto__label .icon {width: 4rem;position: relative;}
 header .cart__label {font-size: 1.125rem;}
 header .cart__totalSum {display: block;color: #aca7b4;margin-top: 0.25rem;transition: all 0.3s ease;}
@@ -1173,7 +1173,7 @@ footer .contacts .contacts__block {width: 100%;}
 .dropdown__open {position: relative;cursor: pointer;}
 .dropdown__open:after {content: "";height: 40px;bottom: -25px;width: 100%;position: absolute;}
 .dropdown__angle {opacity: 0;position: absolute;right: 0.75rem;bottom: -1.25rem;width: 0;height: 0;border-bottom: 1.25rem solid #f1f2f8;border-left: 0.75rem solid transparent;border-right: 0.75rem solid transparent;transition: all 0.3s ease;}
-.opened .dropdown__angle, .dropdown:hover > .dropdown__open .dropdown__angle {opacity: 1;}
+.opened .dropdown__angle, .dropdown:hover .dropdown__angle {opacity: 1;}
 @media all and (max-width: 641px) {
 .dropdown__content {left: 0;right: auto;}
 .cart .dropdown__content {left: auto;right: 0;}

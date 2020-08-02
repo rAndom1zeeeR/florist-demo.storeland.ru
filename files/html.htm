@@ -283,18 +283,16 @@
             </div>
             <!-- Корзина -->
             <div class="cart {% IF CART_COUNT_TOTAL > 0 %}hasItems{% ENDIF %} dropdown">
-              <div class="addto__label dropdown__open" data-open="cart">
-                <a href="{CART_URL}" title="Корзина">
-                  <div class="icon">
-                    <i class="icon-cart"></i>
-                    <span class="cart__count" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
-                  </div>
-                  <div class="content">
-                    <div class="cart__label">Корзина</div>
-                    <div class="cart__totalSum totalSum">{CART_SUM_NOW_WITH_DISCOUNT | money_format }</div>
-                  </div>
-                  <span class="dropdown__angle"></span>
+              <div class="addto__label">
+                <div class="icon dropdown__open" data-open="cart">
+                  <i class="icon-cart"></i>
+                  <span class="cart__count" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
+                </div>
+                <a href="{CART_URL}" title="Корзина" class="content">
+                  <div class="cart__label">Корзина</div>
+                  <div class="cart__totalSum totalSum">{CART_SUM_NOW_WITH_DISCOUNT | money_format }</div>
                 </a>
+                <span class="dropdown__angle"></span>
               </div>
               <!-- Корзина -->
               <div id="addtoCart" class="addto__cart dropdown__content" data-open="cart">

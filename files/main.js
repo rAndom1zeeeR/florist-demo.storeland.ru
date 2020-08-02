@@ -2897,10 +2897,10 @@ function pdtBest() {
 
 // Функция показать больше для Вы смотрели на главной странице
 function recViewed() {
-  var pdtContent = $('.viewed');
-  var pdtButtons = pdtContent.find('.showAll');
-  var pdtCount = pdtContent.find('.viewed__item').length;
-  var pdtVisible = pdtContent.find('.viewed__item').filter(":visible").length;
+  let pdtContent = $('.viewed');
+  let pdtButtons = pdtContent.find('.showAll');
+  let pdtCount = pdtContent.find('.viewed__item').length;
+  let pdtVisible = pdtContent.find('.viewed__item').filter(":visible").length;
   if(pdtCount <= pdtVisible){ 
     pdtButtons.hide();
   }else{
