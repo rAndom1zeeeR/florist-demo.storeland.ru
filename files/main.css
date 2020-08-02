@@ -409,12 +409,14 @@ header .contacts span {font-size: 1rem;}
 header .contacts label {display: block;font-size: 0.75rem;color: #aca7b4;margin-top: 0.5rem;cursor: pointer;}
 }
 @media all and (max-width: 641px) {
-header .logo {width: 180px;padding: 0;margin-top: 2rem;}
-header .menu__icon {width: 70px;height: 140px;}
+header .logo {width: 160px;padding: 0;margin-top: 1rem;}
+header .social__links {margin-top: 1rem;}
+header .menu__icon {width: 70px;height: 120px;}
+header .menu__icon i {padding: 2.5rem 0 0 1rem}
 header .header__right {justify-content: space-between;margin-top: 1rem;}
 header .addto__links > div:first-child {margin-left: 0;}
 header .search {width: 100%;margin-bottom: 2rem;}
-header .contacts {width: calc(100% - 282px);margin-top: 1rem;padding: 0;}
+header .contacts {width: calc(100% - 262px);margin-top: 1rem;padding: 0;}
 header .contacts i {font-size: 1.625rem;}
 header .contacts span {font-size: 12px;}
 header .contacts label {font-size: 10px;}
@@ -498,7 +500,7 @@ header .menu__icon i {padding: 0;font-size: 2rem;}
 .banners__item + .banners__item {margin-top: 2rem;}
 .banners__percent {line-height: 1;}
 }
-@media all and (max-width: 640px) {
+@media all and (max-width: 641px) {
 .banners__item a {padding: 1rem;}
 }
 @media all and (max-width: 480px) {
@@ -658,7 +660,7 @@ footer .contacts .contacts__block {width: 100%;}
 
 
 /*** Наверх ***/
-.toTop {width: 60px;height: 60px;font-size: 2rem;color: #FFFFFF;background: #b30020;position: fixed;right: 1rem;bottom: 1rem;display: flex;align-items: center;justify-content: center;}
+.toTop {width: 60px;height: 60px;font-size: 2rem;color: #FFFFFF;background: #b30020;position: fixed;right: 1rem;bottom: 1rem;display: flex;align-items: center;justify-content: center;z-index: 99;}
 .toTop:hover {background: #840015;cursor: pointer;}
 .toTop i {transform: rotate(-90deg);}
 
@@ -1097,7 +1099,7 @@ footer .contacts .contacts__block {width: 100%;}
 @media all and (max-width: 991px) {
 .addto__goods .product__item {width: calc(50% - 2rem);}
 }
-@media all and (max-width: 640px) {
+@media all and (max-width: 641px) {
 .addto__goods .product__item {width: 100%;}
 }
 
@@ -1174,6 +1176,7 @@ footer .contacts .contacts__block {width: 100%;}
 .dropdown__open:after {content: "";height: 40px;bottom: -25px;width: 100%;position: absolute;}
 .dropdown__angle {opacity: 0;position: absolute;right: 0.75rem;bottom: -1.25rem;width: 0;height: 0;border-bottom: 1.25rem solid #f1f2f8;border-left: 0.75rem solid transparent;border-right: 0.75rem solid transparent;transition: all 0.3s ease;}
 .opened .dropdown__angle, .dropdown:hover .dropdown__angle {opacity: 1;}
+.cart .dropdown__angle {bottom: -1.5rem;}
 @media all and (max-width: 641px) {
 .dropdown__content {left: 0;right: auto;}
 .cart .dropdown__content {left: auto;right: 0;}
