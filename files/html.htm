@@ -91,7 +91,7 @@
                 {% FOR menu %}
                 {% FOR header %}
                 {% FOR links %}
-                <div class="mainnav__item {% IF menu.header.links.NAME = Каталог %}menu__catalog{% ENDIF %}"><a href="{menu.header.links.URL}" class="mainnav__link {% IF menu.header.links.SELECTED %}active{%ENDIF%}" title="{% IF menu.header.links.TITLE %}{menu.header.links.TITLE}{% ELSE%}{menu.header.links.NAME}{% ENDIF %}" itemprop="url"><span itemprop="name">{menu.header.links.NAME}</span></a></div>
+                <div class="mainnav__item {% IF menu.header.links.NAME = Каталог %}mainnav__catalog menu__catalog{% ENDIF %}"><a href="{menu.header.links.URL}" class="mainnav__link {% IF menu.header.links.SELECTED %}active{%ENDIF%}" title="{% IF menu.header.links.TITLE %}{menu.header.links.TITLE}{% ELSE%}{menu.header.links.NAME}{% ENDIF %}" itemprop="url"><span itemprop="name">{menu.header.links.NAME}</span></a></div>
                 {% ENDFOR %}
                 {% ENDFOR %}
                 {% ENDFOR %}
@@ -344,7 +344,7 @@
         <div class="slider owl-carousel">
           <div class="slider__item" data-slide="1">
             <a href="{CATALOG_URL}" title="Подробнее" class="slider__image">
-              <img src="{ASSETS_IMAGES_PATH}slide1.jpg?design=florist" />
+              <img class="owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{ASSETS_IMAGES_PATH}slide1.jpg?design=florist" />
             </a>
             <div class="slider__content">
               <div class="slider__nav owl-nav"></div>
@@ -356,7 +356,7 @@
           </div>
           <div class="slider__item" data-slide="1">
             <a href="{CATALOG_URL}" title="Подробнее" class="slider__image">
-              <img src="{ASSETS_IMAGES_PATH}slide2.jpg?design=florist" />
+              <img class="owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{ASSETS_IMAGES_PATH}slide2.jpg?design=florist" />
             </a>
             <div class="slider__content">
               <div class="slider__nav owl-nav"></div>
@@ -368,7 +368,7 @@
           </div>
           <div class="slider__item" data-slide="1">
             <a href="{CATALOG_URL}" title="Подробнее" class="slider__image">
-              <img src="{ASSETS_IMAGES_PATH}slide3.jpg?design=florist" />
+              <img class="owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{ASSETS_IMAGES_PATH}slide3.jpg?design=florist" />
             </a>
             <div class="slider__content">
               <div class="slider__nav owl-nav"></div>
@@ -404,11 +404,11 @@
               <input type="hidden" name="form[goods_mod_id]" value="{index_page_favorites_goods.MIN_PRICE_NOW_ID}" />
               <div class="product__image">
                 <a href="{index_page_favorites_goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{index_page_favorites_goods.NAME}" itemprop="url">
-                  <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF index_page_favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{index_page_favorites_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_favorites_goods.NAME}" itemprop="image">
+                  <img class="goods-image-medium owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF index_page_favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{index_page_favorites_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_favorites_goods.NAME}" itemprop="image">
                   {% FOR images %}
                   {% IF index_page_favorites_goods.images.index = 2 %}
                   <div class="product__img--hover">
-                    <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{index_page_favorites_goods.images.MEDIUM}" alt="{index_page_favorites_goods.NAME}" title="{index_page_favorites_goods.NAME}">
+                    <img class="goods-image-medium owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{index_page_favorites_goods.images.MEDIUM}" alt="{index_page_favorites_goods.NAME}" title="{index_page_favorites_goods.NAME}">
                   </div>
                   {% ENDIF %}
                   {% ENDFOR %}
@@ -600,11 +600,11 @@
               <input type="hidden" name="form[goods_mod_id]" value="{index_page_new_goods.MIN_PRICE_NOW_ID}" />
               <div class="product__image">
                 <a href="{index_page_new_goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{index_page_new_goods.NAME}" itemprop="url">
-                  <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF index_page_new_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{index_page_new_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_new_goods.NAME}" itemprop="image">
+                  <img class="goods-image-medium owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF index_page_new_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{index_page_new_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_new_goods.NAME}" itemprop="image">
                   {% FOR images %}
                   {% IF index_page_new_goods.images.index = 2 %}
                   <div class="product__img--hover">
-                    <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{index_page_new_goods.images.MEDIUM}" alt="{index_page_new_goods.NAME}" title="{index_page_new_goods.NAME}">
+                    <img class="goods-image-medium owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{index_page_new_goods.images.MEDIUM}" alt="{index_page_new_goods.NAME}" title="{index_page_new_goods.NAME}">
                   </div>
                   {% ENDIF %}
                   {% ENDFOR %}
@@ -814,11 +814,11 @@
               <input type="hidden" name="form[goods_mod_id]" value="{index_page_goods.MIN_PRICE_NOW_ID}" />
               <div class="product__image">
                 <a href="{index_page_goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{index_page_goods.NAME}" itemprop="url">
-                  <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF index_page_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{index_page_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_goods.NAME}" itemprop="image">
+                  <img class="goods-image-medium owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF index_page_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{index_page_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_goods.NAME}" itemprop="image">
                   {% FOR images %}
                   {% IF index_page_goods.images.index = 2 %}
                   <div class="product__img--hover">
-                    <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{index_page_goods.images.MEDIUM}" alt="{index_page_goods.NAME}" title="{index_page_goods.NAME}">
+                    <img class="goods-image-medium owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{index_page_goods.images.MEDIUM}" alt="{index_page_goods.NAME}" title="{index_page_goods.NAME}">
                   </div>
                   {% ENDIF %}
                   {% ENDFOR %}
@@ -1048,11 +1048,11 @@
               <input type="hidden" name="form[goods_mod_id]" value="{index_page_sale_goods.MIN_PRICE_NOW_ID}" />
               <div class="product__image">
                 <a href="{index_page_sale_goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{index_page_sale_goods.NAME}" itemprop="url">
-                  <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF index_page_sale_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{index_page_sale_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_sale_goods.NAME}" itemprop="image">
+                  <img class="goods-image-medium owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF index_page_sale_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{index_page_sale_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{index_page_sale_goods.NAME}" itemprop="image">
                   {% FOR images %}
                   {% IF index_page_sale_goods.images.index = 2 %}
                   <div class="product__img--hover">
-                    <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{index_page_sale_goods.images.MEDIUM}" alt="{index_page_sale_goods.NAME}" title="{index_page_sale_goods.NAME}">
+                    <img class="goods-image-medium owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{index_page_sale_goods.images.MEDIUM}" alt="{index_page_sale_goods.NAME}" title="{index_page_sale_goods.NAME}">
                   </div>
                   {% ENDIF %}
                   {% ENDFOR %}
@@ -1216,7 +1216,7 @@
             {% FOR news_list_all %}
             <div class="news__item">
               <a class="news__image" href="{news_list_all.URL}" title="Перейти к странице &laquo;{news_list_all.TITLE}&raquo;">
-                <img class="lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}news1.jpg?design=florist{% ENDIF %}" alt="{news_list_all.TITLE}" />
+                <img class="owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}news1.jpg?design=florist{% ENDIF %}" alt="{news_list_all.TITLE}" />
                 {% IF news_list_all.SHOW_TIME %}
                 <div class="news__date">{news_list_all.TIME | date("d.m.Y")}</div>
                 {% ENDIF %}
@@ -1236,7 +1236,7 @@
             {% FOR news_list_shop %}
             <div class="news__item">
               <a class="news__image" href="{news_list_shop.URL}" title="Перейти к странице &laquo;{news_list_shop.TITLE}&raquo;">
-                <img class="lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}news1.png?design=florist{% ENDIF %}" alt="{news_list_shop.TITLE}" />
+                <img class="owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}news1.png?design=florist{% ENDIF %}" alt="{news_list_shop.TITLE}" />
                 {% IF news_list_shop.SHOW_TIME %}
                 <div class="news__date">{news_list_shop.TIME | date("d.m.Y")}</div>
                 {% ENDIF %}

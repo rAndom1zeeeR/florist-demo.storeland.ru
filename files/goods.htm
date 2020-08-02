@@ -21,7 +21,7 @@
         {% FOR goods_images %}
           <div class="thumblist__item" data-id="{goods_images.ID}" data-index="{goods_images.index}">
             <a href="{goods_images.LARGE}" data-fancybox="images">
-              <img class="goods-image-icon lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{goods_images.ICON}" alt="{goods_images.NAME}" itemprop="image" />
+              <img class="goods-image-icon owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{goods_images.ICON}" alt="{goods_images.NAME}" itemprop="image" />
             </a>
           </div>
         {% ENDFOR %}
@@ -499,7 +499,7 @@
     <div class="block__title">
       <div class="title">Добавьте к заказу</div>
     </div>
-    <div class="products__grid">
+    <div class="products__grid owl-carousel">
       {% FOR related_goods %}
       <div class="product__item {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && related_goods.MAX_REST_VALUE=0 %}empty{% ENDIF %}" itemscope itemtype="https://schema.org/Product">
         <form action="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}" method="post" class="product__form-{related_goods.MIN_PRICE_NOW_ID} goodsListForm">
@@ -508,7 +508,7 @@
           <input type="hidden" name="form[goods_mod_id]" value="{related_goods.MIN_PRICE_NOW_ID}" />
           <div class="product__image">
             <a href="{related_goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{related_goods.NAME}" itemprop="url">
-              <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF related_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{related_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{related_goods.NAME}" itemprop="image">
+              <img class="goods-image-medium owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF related_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{related_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{related_goods.NAME}" itemprop="image">
             </a>
           </div>
           <div class="product__shop {% IF related_goods.IS_HAS_IN_COMPARE_LIST || related_goods.IS_HAS_IN_FAVORITES_LIST %}added{% ENDIF %}">
@@ -566,7 +566,7 @@
           <input type="hidden" name="form[goods_mod_id]" value="{related_views_goods.MIN_PRICE_NOW_ID}" />
           <div class="product__image">
             <a href="{related_views_goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{related_views_goods.NAME}" itemprop="url">
-              <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF related_views_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{related_views_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{related_views_goods.NAME}" itemprop="image">
+              <img class="goods-image-medium owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF related_views_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{related_views_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{related_views_goods.NAME}" itemprop="image">
               {% FOR images %}
               {% IF related_views_goods.images.index = 2 %}
               <div class="product__img--hover">

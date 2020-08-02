@@ -1086,7 +1086,6 @@ footer .contacts .contacts__block {width: 100%;}
 .related .quickview {display: none;}
 
 /*** Добавить к заказу ***/
-.add__goods .products__grid {margin-left: -1rem;margin-right: -1rem;}
 .add__goods .product__item {width: calc(33.333333% - 2rem);margin: 0 1rem 2rem 1rem;}
 .add__goods [class^="product__form-"] {display: flex;flex-wrap: wrap;align-items: center;border-color: #e0e0e0;}
 .add__goods .product__image {width: 106px;}
