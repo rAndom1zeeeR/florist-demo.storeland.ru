@@ -321,10 +321,10 @@ header .menu__icon i {font-size: 2.25rem;color: #fff;}
 .menu__content .addto__title .addto__close {width: 50px;border-left: 1px solid #e0e0e0;transition: all 0.3s ease;cursor: pointer;}
 .menu__content .addto__title .addto__close:hover {color: #b30020;}
 .menu .mainnav__list {width: 100%;padding: 0 1rem;}
-.menu .catalog__link {width: 100%;display: flex;align-items: center;padding-right: 2.25rem;}
+.menu .catalog__link {width: 100%;display: flex;align-items: center;padding-right: 2.5rem;}
 .menu .catalog__items {padding: 1rem;background: #FFFFFF;}
 .menu .catalog__item {position: relative;}
-.menu .catalog__item .open {position: absolute;right: 1rem;}
+.menu .catalog__item .open {position: absolute;right: 0;padding: 0.25rem 0.5rem;}
 .menu .catalog__item .open:after {content: "\e915";font-family: 'icomoon';font-size: 1rem;}
 .menu .catalog__item .sub {padding-left: 1rem;}
 }
@@ -376,7 +376,7 @@ header .cart__totalSum {display: block;color: #aca7b4;margin-top: 0.25rem;transi
 header .cart .addto__label a:hover .cart__totalSum {color: #b30020;}
 header .cart .addto__label [data-count] {position: absolute;top: -0.75rem;right: 1rem;display: flex;align-items: center;justify-content: center;width: 1.75rem;height: 1.75rem;background: #b30020;color: #fff;border-radius: 100%;}
 /* Избранное, Сравнение, ЛК */
-header .addto__links {position: relative;display: flex;flex-wrap: wrap;width: 194px;}
+header .addto__links {position: relative;display: flex;flex-wrap: wrap;width: 194px;flex-grow: 1;justify-content: flex-end;}
 header .addto__links .addto__label [data-count] {display: none;align-items: center;justify-content: center;position: absolute;top: -2rem;right: -1rem;width: 1.75rem;height: 1.75rem;background: #b30020;color: #fff;border-radius: 100%;}
 header .addto__links > div {margin-left: 1.75rem;}
 header .addto__label i {font-size: 2.25rem;}
@@ -1068,7 +1068,7 @@ footer .contacts .contacts__block {width: 100%;}
 .productView__tabs {margin-top: 2rem;}
 .tabs__content {padding: 1rem 0;}
 .opinion__rating {width: 100%;padding: 0;}
-.opinion__addForm {width: 100%;padding: 2rem 0 0 0;}
+.opinion__addForm {width: 100%;padding: 0;}
 }
 @media all and (max-width: 767px) {
 .tabs__nav {justify-content: flex-start;}

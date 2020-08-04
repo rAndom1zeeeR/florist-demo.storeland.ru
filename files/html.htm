@@ -91,7 +91,7 @@
                 {% FOR menu %}
                 {% FOR header %}
                 {% FOR links %}
-                <div class="mainnav__item {% IF menu.header.links.NAME = Каталог %}mainnav__catalog menu__catalog{% ENDIF %}"><a href="{menu.header.links.URL}" class="mainnav__link {% IF menu.header.links.SELECTED %}active{%ENDIF%}" title="{% IF menu.header.links.TITLE %}{menu.header.links.TITLE}{% ELSE%}{menu.header.links.NAME}{% ENDIF %}" itemprop="url"><span itemprop="name">{menu.header.links.NAME}</span></a></div>
+                <div class="mainnav__item {% IF menu.header.links.NAME = Каталог %}mainnav__catalog{% ENDIF %}"><a href="{menu.header.links.URL}" class="mainnav__link {% IF menu.header.links.SELECTED %}active{%ENDIF%}" title="{% IF menu.header.links.TITLE %}{menu.header.links.TITLE}{% ELSE%}{menu.header.links.NAME}{% ENDIF %}" itemprop="url"><span itemprop="name">{menu.header.links.NAME}</span></a></div>
                 {% ENDFOR %}
                 {% ENDFOR %}
                 {% ENDFOR %}
