@@ -2675,6 +2675,7 @@ function startOrder(){
       OrderScripts();
       OrderScriptsSelect();
       showPass();
+      preload();
       $(".form__phone").mask("+7 (999) 999-9999");
       $("#sites_client_phone").mask("+7 (999) 999-9999");
       $('#closeOrder').on('click', function() {

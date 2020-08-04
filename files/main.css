@@ -1396,6 +1396,7 @@ section {margin: 2rem 0;}
 .cart__page .cart {display: none;}
 .cart__page .cart__count {display: none;}
 .related__cart {margin-top: 2rem;}
+.cartItems {position: relative;}
 .cartTable {display: flex;flex-wrap: wrap;align-items: flex-start;}
 .cart__items {width: 66.666667%;padding-right: 1rem;}
 .cart__item {padding: 1rem 0;border-bottom: 1px solid #e0e0e0;background: #fff;display: flex;flex-wrap: wrap;align-items: center;}
