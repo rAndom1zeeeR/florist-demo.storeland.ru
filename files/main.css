@@ -444,6 +444,7 @@ header .menu__icon i {padding: 0;font-size: 2rem;}
 #slideshow {position: relative;margin-top: 3rem;}
 .slider__title {width: calc(100% - 15rem);font-size: 2.25rem;padding: 0 8rem;height: 5.75rem;color: #fff;display: flex;align-items: center;background-image: url("{ASSETS_IMAGES_PATH}bg_slide_1.jpg?design=florist");background-repeat: no-repeat;background-position: 0 0;background-size: cover;}
 .slider__title:hover {color: rgba(255, 255, 255, 0.8);}
+.slider__item {position: relative;}
 .slider__content {position: absolute;bottom: 20%;width: 100%;display: flex;flex-wrap: wrap;}
 .slider__buttons {position: absolute;bottom: -0.75rem;right: 0;padding: 3rem 4rem;width: 18rem;height: 6.5rem;background-image: url("{ASSETS_IMAGES_PATH}bg_slide_2.png?design=florist");background-repeat: no-repeat;background-position: 0 0;background-size: cover;}
 .slider__button {font-size: 1.375rem;color: #fff;padding: 0 2rem;}
