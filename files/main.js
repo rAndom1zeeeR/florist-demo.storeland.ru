@@ -829,6 +829,41 @@ function catalogpage() {
   });
 }
 
+// Корзина
+function relatedCart() {
+	// Дополнительные товары Слайдер
+	$('.related__cart .owl-carousel').owlCarousel({
+		items: 3,
+		margin: 32,
+		loop: false,
+		rewind: true,
+		lazyLoad: true,
+		nav: true,
+		navContainer: '.related__views .owl-nav',
+		navText: [ , ],
+		dots: false,
+		autoHeight: false,
+		autoHeightClass: 'owl-height',
+		autoplay: false,
+		autoplayHoverPause: true,
+		smartSpeed: 500,
+		mouseDrag: true,
+		touchDrag: true,
+		pullDrag: true,
+		responsiveClass: true,
+		responsiveRefreshRate: 100,
+		responsive: {
+			0:{items:1},
+			320:{items:1},
+			481:{items:1},
+			641:{items:1},
+			768:{items:2},
+			992:{items:3},
+			1200:{items:3}
+		}
+	});
+}
+
 // Фильтр по ценам
 function priceFilter() {
   var
@@ -2560,63 +2595,57 @@ function cartQuantity(){
 	$('.cartqty').change($.debounce(300, function(){
 		let quantity = $(this);
 		let qVal = $(this).val();
-		if(qVal >= '1'){
-			let id = $(this).closest('.cart__item').data('id');
-			let data = $('.cartForm').serializeArray();
-			data.push({name: 'only_body', value: 1});
-			$.ajax({
-				data: data,
-				cache:false,
-				success:function(d){
-					quantity.val($(d).find('.cart__item[data-id="' + id + '"] .cartqty').val());
-					let item = $('.cart__item[data-id="' + id + '"]');
-					item.find('.cartPriceTotal span').html($(d).find('.cart__item[data-id="' + id + '"] .cartPriceTotal span').html());
-					$('.cart__total').html($(d).find('.cart__total').html());
-					let cVal = $(d).find('.cart__item[data-id="' + id + '"] .cartqty').attr('max');
-					// Вызов функции быстрого заказа в корзине
-					$('#startOrder').on('click', function() {
-						startOrder();
-						return false;
-					});
-					if(parseInt(qVal) > parseInt(cVal)){
-						$('.cart__error').remove();
-						$('.cartTable').before('<div class="cart__error warning">Вы пытаетесь положить в корзину товара больше, чем есть в наличии</div>');
-						$('.cart__error').fadeIn(500).delay(2500).fadeOut(500, function(){$('.cartErr').remove();});
-						$('.cartqty').removeAttr('readonly');
-					}
+		let id = $(this).closest('.cart__item').data('id');
+		let data = $('.cartForm').serializeArray();
+		data.push({name: 'only_body', value: 1});
+		$.ajax({
+			data: data,
+			cache:false,
+			success:function(d){
+				quantity.val($(d).find('.cart__item[data-id="' + id + '"] .cartqty').val());
+				let item = $('.cart__item[data-id="' + id + '"]');
+				item.find('.cartPriceTotal span').html($(d).find('.cart__item[data-id="' + id + '"] .cartPriceTotal span').html());
+				$('.cart__total').html($(d).find('.cart__total').html());
+				$('.cartItems').html($(d).find('.cartItems').html());
+				let maxVal = $(d).find('.cart__item[data-id="' + id + '"] .cartqty').attr('max');
+				// Вызов функции быстрого заказа в корзине
+				$('#startOrder').on('click', function() {
+					startOrder();
+					return false;
+				});
+				if(parseInt(qVal) > parseInt(maxVal)){
+					$('.cart__error').remove();
+					$('.cartTable').before('<div class="cart__error warning">Вы пытаетесь положить в корзину товара больше, чем есть в наличии</div>');
+					$('.cart__error').fadeIn(500).delay(2500).fadeOut(500, function(){$('.cartErr').remove();});
+					$('.cartqty').removeAttr('readonly');
 				}
-			});
-		}else{
-			$(this).val('0');
-			console.log($(this))
-			$(this).parents().find('.cart__item').hide();
-			$(this).trigger('change');
-		}
+				if(qVal < 1){
+					quantity.val('0');
+					let s = $('.cart__item[data-id="' + id + '"] .remove');
+					cartDelete(s)
+				}
+			}
+		});
 	}));
 	quantity()
 }
 
 // Удаление товара из корзины
 function cartDelete(s){
-  let yep = confirm('Вы точно хотите удалить товар из корзины?');
-  if(yep == true){
-    s.closest('.cart__item').fadeOut();
-    url = s.data('href');
-    $.ajax({
-      url:url,
-      cache:false,
-      success:function(d){
-        $('.cartItems').html($(d).find('.cartItems').html());
-        cartQuantity();
-        $('#startOrder').on('click', function() {
-          startOrder();
-          return false;
-        });
-      }
-    });
-  }else{
-    return false;
-  }
+  s.closest('.cart__item').fadeOut();
+  url = s.data('href');
+  $.ajax({
+    url:url,
+    cache:false,
+    success:function(d){
+      $('.cartItems').html($(d).find('.cartItems').html());
+      cartQuantity();
+      $('#startOrder').on('click', function() {
+        startOrder();
+        return false;
+      });
+    }
+  });
 }
 
 // Функция быстрого оформления заказа в корзине

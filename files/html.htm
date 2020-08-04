@@ -1769,7 +1769,10 @@
     {% ENDIF %}
     // Скрипты для страницы "Корзина"
     {% IF MOD_LNAME = cart %}
-    $(document).ready(function () { cartQuantity(); });
+    $(document).ready(function () {
+      cartQuantity();
+      relatedCart();
+    });
     {% ENDIF %}
     // Скрипты для страницы "Товары, Акции, Поиск"
     {% IF MOD_LNAME = catalog || MOD_LNAME = discount || MOD_LNAME = search %}

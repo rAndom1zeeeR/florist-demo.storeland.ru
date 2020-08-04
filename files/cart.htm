@@ -85,61 +85,61 @@
       <!-- Сюда грузится форма оформления быстрого заказа -->
     </div>
   </div>
-
-  <!-- Добавьте к заказу -->
-  {% IFNOT cart_related_goods_empty %}
-  <div class="related__cart add__goods">
-    <div class="block__title">
-      <div class="title">Добавьте к заказу</div>
-    </div>
-    <div class="products__grid">
-      {% FOR cart_related_goods %}
-      {% IFNOT cart_related_goods.MAX_REST_VALUE >= 1 && SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE %}
-        {continue}
-      {% ENDIF %}
-      <div class="product__item {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && cart_related_goods.MAX_REST_VALUE=0 %}empty{% ENDIF %}" itemscope itemtype="https://schema.org/Product">
-        <form action="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}" method="post" class="product__form-{cart_related_goods.MIN_PRICE_NOW_ID} goodsListForm">
-          <input type="hidden" name="hash" value="{HASH}" />
-          <input type="hidden" name="form[goods_from]" value="{cart_related_goods.GOODS_FROM}" />
-          <input type="hidden" name="form[goods_mod_id]" value="{cart_related_goods.MIN_PRICE_NOW_ID}" />
-          <div class="product__image">
-            <a href="{cart_related_goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{cart_related_goods.NAME}" itemprop="url">
-              <img class="goods-image-medium lozad" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF cart_related_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{cart_related_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{cart_related_goods.NAME}" itemprop="image">
-            </a>
-          </div>
-          <div class="product__shop {% IF cart_related_goods.IS_HAS_IN_COMPARE_LIST || cart_related_goods.IS_HAS_IN_FAVORITES_LIST %}added{% ENDIF %}">
-            <meta itemprop="sku" content="{cart_related_goods.ART_NUMBER}"/>
-            <!-- Цена для поисковиков -->
-            <div itemprop="offers" itemscope itemtype="http://schema.org/AggregateOffer">
-              <meta itemprop="priceCurrency" content="{CURRENCY_CHAR_CODE}"/>
-              <meta itemprop="lowPrice" content="{cart_related_goods.MIN_PRICE_NOW}">
-              <meta itemprop="highPrice" content="{cart_related_goods.MAX_PRICE_NOW}">
-              <meta itemprop="offerCount" content="{% FOR mods %}{% IF cart_related_goods.mods.last %}{cart_related_goods.mods.length}{% ENDIF %}{% ENDFOR %}">
-            </div>
-            <!-- Название товара -->
-            <div class="product__name"><a href="{cart_related_goods.URL_MIN_PRICE_NOW | url_amp}" title="{cart_related_goods.NAME}"><span itemprop="name">{cart_related_goods.NAME}</span></a></div>
-            <!-- Цена -->
-            <div class="product__price {CURRENCY_CHAR_CODE}" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-              <meta itemprop="priceCurrency" content="{CURRENCY_CHAR_CODE}"/>
-              <meta itemprop="availability" content="{% IF cart_related_goods.MAX_REST_VALUE>0 %}http://schema.org/InStock{% ELSE %}http://schema.org/OutOfStock{% ENDIF %}" />
-              <meta itemprop="priceValidUntil" content="{cart_related_goods.MAX_DISCOUNT_EXPIRED_AT | date("Y-m-d")}"/>
-              <span class="price__now {CURRENCY_CHAR_CODE}" itemprop="price" content="{cart_related_goods.MIN_PRICE_NOW}">{cart_related_goods.MIN_PRICE_NOW | money_format}</span>
-            </div>
-            <div class="product__addtoCart">
-            {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && cart_related_goods.MAX_REST_VALUE=0 %}
-              <a class="add-empty button small" href="{cart_related_goods.URL_MIN_PRICE_NOW | url_amp}" title="{cart_related_goods.NAME}"><span>Нет в наличии</span></a>
-            {% ELSE %}
-              <a class="button small" title="Добавить в корзину &laquo;{cart_related_goods.NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={cart_related_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={cart_related_goods.MIN_PRICE_NOW_ID}"><span>Добавить</span></a>
-            {% ENDIF %}
-            </div>
-          </div>
-        </form>
-      </div>
-      {% ENDFOR %}
-    </div>
-  </div>
-  {% ENDIF %}
 </div>
+
+<!-- Добавьте к заказу -->
+{% IFNOT cart_related_goods_empty %}
+<div class="related__cart add__goods">
+  <div class="block__title">
+    <div class="title">Добавьте к заказу</div>
+  </div>
+  <div class="products__grid owl-carousel">
+    {% FOR cart_related_goods %}
+    {% IFNOT cart_related_goods.MAX_REST_VALUE >= 1 && SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE %}
+    {continue}
+    {% ENDIF %}
+    <div class="product__item {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && cart_related_goods.MAX_REST_VALUE=0 %}empty{% ENDIF %}" itemscope itemtype="https://schema.org/Product">
+      <form action="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}" method="post" class="product__form-{cart_related_goods.MIN_PRICE_NOW_ID} goodsListForm">
+        <input type="hidden" name="hash" value="{HASH}" />
+        <input type="hidden" name="form[goods_from]" value="{cart_related_goods.GOODS_FROM}" />
+        <input type="hidden" name="form[goods_mod_id]" value="{cart_related_goods.MIN_PRICE_NOW_ID}" />
+        <div class="product__image">
+          <a href="{cart_related_goods.URL_MIN_PRICE_NOW | url_amp}" class="product__img" title="{cart_related_goods.NAME}" itemprop="url">
+            <img class="goods-image-medium owl-lazy" src="{ASSETS_IMAGES_PATH}placeholder.png?design=florist" data-src="{% IF cart_related_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{cart_related_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{cart_related_goods.NAME}" itemprop="image">
+          </a>
+        </div>
+        <div class="product__shop {% IF cart_related_goods.IS_HAS_IN_COMPARE_LIST || cart_related_goods.IS_HAS_IN_FAVORITES_LIST %}added{% ENDIF %}">
+          <meta itemprop="sku" content="{cart_related_goods.ART_NUMBER}"/>
+          <!-- Цена для поисковиков -->
+          <div itemprop="offers" itemscope itemtype="http://schema.org/AggregateOffer">
+            <meta itemprop="priceCurrency" content="{CURRENCY_CHAR_CODE}"/>
+            <meta itemprop="lowPrice" content="{cart_related_goods.MIN_PRICE_NOW}">
+            <meta itemprop="highPrice" content="{cart_related_goods.MAX_PRICE_NOW}">
+            <meta itemprop="offerCount" content="{% FOR mods %}{% IF cart_related_goods.mods.last %}{cart_related_goods.mods.length}{% ENDIF %}{% ENDFOR %}">
+          </div>
+          <!-- Название товара -->
+          <div class="product__name"><a href="{cart_related_goods.URL_MIN_PRICE_NOW | url_amp}" title="{cart_related_goods.NAME}"><span itemprop="name">{cart_related_goods.NAME}</span></a></div>
+          <!-- Цена -->
+          <div class="product__price {CURRENCY_CHAR_CODE}" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <meta itemprop="priceCurrency" content="{CURRENCY_CHAR_CODE}"/>
+            <meta itemprop="availability" content="{% IF cart_related_goods.MAX_REST_VALUE>0 %}http://schema.org/InStock{% ELSE %}http://schema.org/OutOfStock{% ENDIF %}" />
+            <meta itemprop="priceValidUntil" content="{cart_related_goods.MAX_DISCOUNT_EXPIRED_AT | date("Y-m-d")}"/>
+            <span class="price__now {CURRENCY_CHAR_CODE}" itemprop="price" content="{cart_related_goods.MIN_PRICE_NOW}">{cart_related_goods.MIN_PRICE_NOW | money_format}</span>
+          </div>
+          <div class="product__addtoCart">
+            {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && cart_related_goods.MAX_REST_VALUE=0 %}
+            <a class="add-empty button small" href="{cart_related_goods.URL_MIN_PRICE_NOW | url_amp}" title="{cart_related_goods.NAME}"><span>Нет в наличии</span></a>
+            {% ELSE %}
+            <a class="button small" title="Добавить в корзину &laquo;{cart_related_goods.NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={cart_related_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={cart_related_goods.MIN_PRICE_NOW_ID}"><span>Добавить</span></a>
+            {% ENDIF %}
+          </div>
+        </div>
+      </form>
+    </div>
+    {% ENDFOR %}
+  </div>
+</div>
+{% ENDIF %}
 
 <style>
  #ui-datepicker-div {display: none;}
