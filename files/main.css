@@ -815,7 +815,7 @@ footer .contacts .contacts__block {width: 100%;}
 
 
 /*** Категории ***/
-.categories__list {display: flex;flex-wrap: wrap;}
+.categories__grid {display: flex;flex-wrap: wrap;}
 .categories__item {position: relative;width: calc(25% - 2rem);margin: 0 1rem 2rem 1rem;transition: all 0.3s ease;overflow: hidden;}
 .categories__name {position: absolute;left: 0;top: 2rem;background-color: rgba(255,255,255,0.5);padding: 1.5rem;width: 100%;font-size: 1.5rem;word-break: break-word;transition: all 0.3s ease;}
 .categories__item:hover .categories__name {background-color: rgba(29, 136, 132, 0.702);color: #fff;}
