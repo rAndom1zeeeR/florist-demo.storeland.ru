@@ -983,6 +983,13 @@ function quantity() {
     // Обновляем новую сумму
     $('.productView__price .price__now').attr('data-price', multi).find('.num').text(addSpaces(multi));
   });
+  // Изменение кол-ва в карточке
+  $('.qty .cartqty').change(function() {
+    // Если вводят 0 то заменяем на 1
+    if ($(this).val() < 1) {
+      $(this).val(0);
+    }
+  });
 }
 
 // Радио кнопки для модификаций
@@ -2597,35 +2604,37 @@ function cartQuantity(){
 		let qVal = $(this).val();
 		let id = $(this).closest('.cart__item').data('id');
 		let data = $('.cartForm').serializeArray();
-		data.push({name: 'only_body', value: 1});
-		$.ajax({
-			data: data,
-			cache:false,
-			success:function(d){
-				quantity.val($(d).find('.cart__item[data-id="' + id + '"] .cartqty').val());
-				let item = $('.cart__item[data-id="' + id + '"]');
-				item.find('.cartPriceTotal span').html($(d).find('.cart__item[data-id="' + id + '"] .cartPriceTotal span').html());
-				$('.cart__total').html($(d).find('.cart__total').html());
-				$('.cartItems').html($(d).find('.cartItems').html());
-				let maxVal = $(d).find('.cart__item[data-id="' + id + '"] .cartqty').attr('max');
-				// Вызов функции быстрого заказа в корзине
-				$('#startOrder').on('click', function() {
-					startOrder();
-					return false;
-				});
-				if(parseInt(qVal) > parseInt(maxVal)){
-					$('.cart__error').remove();
-					$('.cartTable').before('<div class="cart__error warning">Вы пытаетесь положить в корзину товара больше, чем есть в наличии</div>');
-					$('.cart__error').fadeIn(500).delay(2500).fadeOut(500, function(){$('.cartErr').remove();});
-					$('.cartqty').removeAttr('readonly');
-				}
-				if(qVal < 1){
-					quantity.val('0');
-					let s = $('.cart__item[data-id="' + id + '"] .remove');
-					cartDelete(s)
-				}
-			}
-		});
+    data.push({name: 'only_body', value: 1});
+    $.ajax({
+      data: data,
+      cache: false,
+      success: function (d) {
+        quantity.val($(d).find('.cart__item[data-id="' + id + '"] .cartqty').val());
+        let item = $('.cart__item[data-id="' + id + '"]');
+        item.find('.cartPriceTotal span').html($(d).find('.cart__item[data-id="' + id + '"] .cartPriceTotal span').html());
+        $('.cart__total').html($(d).find('.cart__total').html());
+        $('.cartItems').html($(d).find('.cartItems').html());
+        let maxVal = $(d).find('.cart__item[data-id="' + id + '"] .cartqty').attr('max');
+        // Вызов функции быстрого заказа в корзине
+        $('#startOrder').on('click', function () {
+          startOrder();
+          return false;
+        });
+        if (parseInt(qVal) > parseInt(maxVal)) {
+          $('.cart__error').remove();
+          $('.cartTable').before('<div class="cart__error warning">Вы пытаетесь положить в корзину товара больше, чем есть в наличии</div>');
+          $('.cart__error').fadeIn(500).delay(2500).fadeOut(500, function () {
+            $('.cartErr').remove();
+          });
+          $('.cartqty').removeAttr('readonly');
+        }
+        if (qVal < 1) {
+          quantity.val('0');
+          let s = $('.cart__item[data-id="' + id + '"] .remove');
+          cartDelete(s)
+        }
+      }
+    });
 	}));
 	quantity()
 }
