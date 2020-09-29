@@ -441,6 +441,7 @@ header .cart {width: auto;}
 header .cart .addto__label a .content {display: none;}
 header .cart .addto__title .totalSum {display: block;margin-left: 0;}
 header .cart__label {display: none;}
+header .cart .addto__label .content {display: none;}
 header .menu__icon {background: #b30020;width: 60px;height: 60px;display: flex;align-items: center;justify-content: center;}
 header .menu__icon i {padding: 0;font-size: 2rem;}
 }
