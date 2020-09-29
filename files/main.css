@@ -418,6 +418,7 @@ header .social__links {margin-top: 1rem;}
 header .menu__icon {width: 70px;height: 120px;}
 header .menu__icon i {padding: 2.5rem 0 0 1rem}
 header .header__right {justify-content: space-between;margin-top: 1rem;}
+header .addto__links {justify-content: flex-start;}
 header .addto__links > div:first-child {margin-left: 0;}
 header .search {width: 100%;margin-bottom: 2rem;}
 header .contacts {width: calc(100% - 262px);margin-top: 1rem;padding: 0;}
@@ -439,6 +440,7 @@ header .contacts label {font-size: 11px;}
 header .cart {width: auto;}
 header .cart .addto__label a .content {display: none;}
 header .cart .addto__title .totalSum {display: block;margin-left: 0;}
+header .cart__label {display: none;}
 header .menu__icon {background: #b30020;width: 60px;height: 60px;display: flex;align-items: center;justify-content: center;}
 header .menu__icon i {padding: 0;font-size: 2rem;}
 }
