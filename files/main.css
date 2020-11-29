@@ -620,9 +620,12 @@ footer {background: #fff;}
 /** Логотип **/
 footer .logo {width: 230px;padding: 2rem 1rem 0 0.5rem;}
 /** Соц Сети **/
-footer .social__links {margin-top: 3rem;text-align: center;}
-footer .social__links a {font-size: 1.25rem;margin: 0 0.5rem;}
+footer .social__links {margin-top: 2rem;text-align: center;}
+footer .social__links a {font-size: 1.25rem;margin: 0.5rem;display: inline-block;}
 footer .social__links span {display: none;}
+footer .payments {margin-top: 1rem;}
+footer .payments i {font-size: 1.25rem;margin: 0.5rem;display: inline-block;color: #FFFFFF;opacity: 0.5;}
+footer .payments i:hover {opacity: 1;}
 /** Контакты **/
 footer .contacts {width: calc(100% - 260px);display: flex;flex-wrap: wrap;align-items: center;}
 footer .contacts .contacts__block {margin: 2rem 0 0 2rem;width: calc(50% - 2rem);display: flex;flex-wrap: wrap;align-items: center;}
